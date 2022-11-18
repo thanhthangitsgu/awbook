@@ -10,6 +10,23 @@
     @viteReactRefresh
     @vite(['resources/js/index.jsx'])
     <!-- CSS only -->
+    <style>
+        body::-webkit-scrollbar {
+            width: 4px;
+            background-color: #F5F5F5;
+            ;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: gray;
+            border-radius: 5px;
+        }
+
+        body::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>

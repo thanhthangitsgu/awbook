@@ -28,7 +28,6 @@ class Slider extends React.Component {
         },
       ]
     const nextSlide = () => {
-      console.log('next')
       if (this.state.indexSlide !== listSlide.length) {
         this.setState({ indexSlide: this.state.indexSlide + 1 })
       } else if (this.state.indexSlide === listSlide.length) {
