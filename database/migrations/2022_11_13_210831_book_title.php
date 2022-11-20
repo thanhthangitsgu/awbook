@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name',200);
             $table->integer('author_id')->unsigned();
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->timestamps();
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
         });

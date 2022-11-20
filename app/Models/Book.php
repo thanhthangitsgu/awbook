@@ -13,7 +13,10 @@ class Book extends Model
         'pub_id',
         'year',
         'price',
+        'amount',
+        'image',
         'describe',
+        'promotion_id',
         'status'
     ];
 }

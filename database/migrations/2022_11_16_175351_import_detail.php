@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('book_id')->unsigned();    
             $table->integer('amount');
             $table->integer('price');
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->timestamps();
             $table->primary(['import_id','book_id']);
             $table->foreign('import_id')->references('id')->on('imports')->onDelete('cascade');

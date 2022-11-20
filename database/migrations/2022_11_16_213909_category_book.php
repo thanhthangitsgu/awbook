@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('book_categorys', function (Blueprint $table) {
+        Schema::create('category_books', function (Blueprint $table) {
             $table->integer('book_id')->unsigned();
             $table->integer('cate_id')->unsigned();
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->timestamps();
             $table->primary(['book_id','cate_id']);
             $table->foreign('book_id')->references('id')->on('book_titles')->onDelete('cascade');
-            $table->foreign('cate_id')->references('id')->on('categorys')->onDelete('cascade');
+            $table->foreign('cate_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_categorys');
+        Schema::dropIfExists('category_books');
     }
 };

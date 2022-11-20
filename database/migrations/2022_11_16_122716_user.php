@@ -18,14 +18,14 @@ return new class extends Migration
             $table->string('surname',100);
             $table->string('name',100);
             $table->string('gender',10);
-            $table->date('date_of_birth');
+            $table->date('date_of_birth')->nullable();
             $table->integer('position_id')->unsigned();
             $table->string('phone',50);
-            $table->string('address',100);
+            $table->string('address',200);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');

@@ -9,24 +9,28 @@ use App\Http\Resources\Partner as PartnerResource;
 
 class PartnerController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $partner = Partner::all();
+
         $arr = [
         'status' => true,
         'message' => "Danh sách đối tác",
         'data'=>PartnerResource::collection($partner)
         ];
+        
         return response()->json($arr, 200, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request) 
+    {
         $input = $request->all(); 
+
         $validator = Validator::make($input, [
           'name' => 'required',
           'type' => 'required',
-          'discount' => 'required',
-          'status'=> 'required'
         ]);
+
         if($validator->fails()){
            $arr = [
              'success' => false,
@@ -35,16 +39,22 @@ class PartnerController extends Controller
            ];
            return response()->json($arr, 200, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
+
+        $input['status']='1';
         $partner = Partner::create($input);
+
         $arr = ['status' => true,
            'message'=>"Thông tin đối tác đã lưu thành công",
            'data'=> new PartnerResource($partner)
         ];
+
         return response()->json($arr, 201, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
-    public function show($id) {
+    public function show($id) 
+    {
         $partner = Partner::find($id);
+
         if (is_null($partner)) {
            $arr = [
              'success' => false,
@@ -53,52 +63,55 @@ class PartnerController extends Controller
            ];
            return response()->json($arr, 200, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
+
         $arr = [
           'status' => true,
           'message' => "Chi tiết thông tin đối tác",
           'data'=> new PartnerResource($partner)
         ];
+
         return response()->json($arr, 201, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $partner = Partner::find($id);
         $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required',
-            'type' => 'required',
-            'discount' => 'required',
-            'status'=> 'required'
-        ]);
-        if($validator->fails()){
-          $arr = [
-            'success' => false,
-            'message' => 'Lỗi kiểm tra dữ liệu',
-            'data' => $validator->errors()
-          ];
-          return response()->json($arr, 200, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
-        }
-        $partner->name = $input['name'];
-        $partner->type = $input['type'];
+
+        if(isset($input['name']))
+          $partner->name = $input['name'];
+
+        if(isset($input['type']))
+          $partner->type = $input['type'];
+
+        if(isset($input['discount']))
         $partner->discount = $input['discount'];
-        $partner->status = $input['status'];
+
+        if(isset($input['status']))
+          $partner->status = $input['status'];
+
         $partner->save();
+
         $arr = [
           'status' => true,
           'message' => 'Thông tin đối tác cập nhật thành công',
           'data' => new PartnerResource($partner)
         ];
+        
         return response()->json($arr, 200, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $partner = Partner::find($id);
         $partner->delete();
+
         $arr = [
            'status' => true,
            'message' =>'Đối tác đã được xóa',
            'data' => [],
         ];
+        
         return response()->json($arr, 200, ['Content-type','application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 }

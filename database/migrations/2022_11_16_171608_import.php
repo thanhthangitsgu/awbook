@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('staff_id')->unsigned();
             $table->integer('partner_id')->unsigned();    
             $table->integer('total_cost');
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->timestamps();
             $table->foreign('staff_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');

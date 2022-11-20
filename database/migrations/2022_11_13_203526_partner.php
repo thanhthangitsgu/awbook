@@ -17,8 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name',100);
             $table->string('type',100);
-            $table->integer('discount');
-            $table->integer('status');
+            $table->integer('discount')->nullable();
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }

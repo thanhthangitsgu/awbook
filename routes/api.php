@@ -19,7 +19,7 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ImportDetailController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\BillDetailController;
-use App\Http\Controllers\BookCategoryController;
+use App\Http\Controllers\CategoryBookController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -52,4 +52,4 @@ Route::resource('import', ImportController::class);
 Route::resource('import-detail', ImportDetailController::class);
 Route::resource('bill', BillController::class);
 Route::resource('bill-detail', BillDetailController::class);
-Route::resource('book-category', BookCategoryController::class);
+Route::resource('category-book', CategoryBookController::class);

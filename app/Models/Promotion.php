@@ -12,6 +12,7 @@ class Promotion extends Model
         'name', 
         'start_time',
         'end_time',
+        'discount',
         'status'
     ];
 }

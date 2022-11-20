@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',100);
-            $table->string('pseudonym',100);
-            $table->string('gender',10);
-            $table->integer('year_of_birth');
-            $table->integer('year_of_death');
-            $table->text('native_place');
-            $table->text('introduce');
-            $table->integer('status');
+            $table->string('pseudonym',100)->nullable();
+            $table->string('gender',10)->nullable();
+            $table->integer('year_of_birth')->nullable();
+            $table->integer('year_of_death')->nullable();
+            $table->text('native_place')->nullable();
+            $table->text('introduce')->nullable();
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('name');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->integer('status');
+            $table->integer('discount');
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }

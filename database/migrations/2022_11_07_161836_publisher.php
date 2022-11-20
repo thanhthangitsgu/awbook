@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('publishers', function (Blueprint $table) {
             $table->string('id_pub',100);
             $table->string('name',100);
-            $table->string('address',100);
-            $table->integer('status');
+            $table->string('address',200)->nullable();;
+            $table->integer('status')->default('1');
             $table->timestamps();
             $table->primary('id_pub');
         });
