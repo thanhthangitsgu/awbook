@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'73 An Dương Vương, P8, Q5, TP.HCM',
                 'email'=>'phananhquan48@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ], 
             [
                 'surname'=>'Phan Thanh',
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'73 An Dương Vương, P8, Q5, TP.HCM',
                 'email'=>'thanhthang.itsgu@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],  
             [
                 'surname'=>'Nguyễn Thị Thảo',
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'27/7 Nguyễn Ngọc Lộc, P14, Q10, TP.HCM',
                 'email'=>'thaonguyen25@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],  
             [
                 'surname'=>'Trần Thị Thu',
@@ -62,7 +62,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'273 An Dương Vương, P3, Q5, TP.HCM',
                 'email'=>'thuthanh1999@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],  
             [
                 'surname'=>'Lê Thị Bảo',
@@ -74,7 +74,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>' Đ.Mạc Đĩnh Chi, Tân Hòa, Đông Hòa, Dĩ An, Bình Dương',
                 'email'=>'baomay74@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],  
             [
                 'surname'=>'Lê Thúc',
@@ -86,7 +86,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'669 QL1A, khu phố 3, Thủ Đức, TP.HCM',
                 'email'=>'lethuckhanh01@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],
             [
                 'surname'=>'Võ Viết',
@@ -98,7 +98,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'102 Phùng Hưng, Thuận Thành, TP.Huế, Thừa Thiên Huế',
                 'email'=>'trieudaden1005@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],
             [
                 'surname'=>'Nguyễn Văn Minh',
@@ -110,7 +110,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'212 Nguyễn Văn Linh, P.Tây Thuận Tây, Q7, TP.HCM',
                 'email'=>'nguyenminhduc@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],
             [
                 'surname'=>'Lê Thị Cẩm',
@@ -122,7 +122,7 @@ class UsersTableSeeder extends Seeder
                 'address'=>'13 Tôn Đản, P13, Q4 TP.HCM',
                 'email'=>'camduyen123@gmail.com',
                 'email_verified_at'=>null,
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ],
         ];
         

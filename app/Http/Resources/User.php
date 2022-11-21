@@ -24,7 +24,9 @@ class User extends JsonResource
             'phone' => $this->phone,
             'address' => $this->address,
             'email' => $this->email,
+            'email_verified_at' => $this->email_verified_at,
             'status' => $this->status,
+            'remember_token' => $this->remember_token,
             'created_at' => $this->created_at->format('H:i:m d/m/Y'),
             'updated_at' => $this->updated_at->format('H:i:m d/m/Y'),
         ];

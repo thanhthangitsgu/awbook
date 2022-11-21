@@ -20,6 +20,7 @@ use App\Http\Controllers\ImportDetailController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\BillDetailController;
 use App\Http\Controllers\CategoryBookController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,9 +32,9 @@ use App\Http\Controllers\CategoryBookController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 Route::resource('promotion', PromotionController::class);
 Route::resource('publisher', PublisherController::class);
@@ -53,3 +54,9 @@ Route::resource('import-detail', ImportDetailController::class);
 Route::resource('bill', BillController::class);
 Route::resource('bill-detail', BillDetailController::class);
 Route::resource('category-book', CategoryBookController::class);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+Route::middleware('auth:api')->group(function(){
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::get('profile', [AuthController::class, 'user']);
+});
