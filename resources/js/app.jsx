@@ -1,20 +1,26 @@
 import React from 'react'
 import './app.jsx'
-import Home from './pages/Home'
 import Header from './layouts/Header.jsx'
-import { BrowserRouter, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Footer from './layouts/Footer.jsx'
-
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <Header></Header>
-        <Outlet></Outlet>
-        <Footer></Footer>
-      </>
-
-    )
+import AuForm from './components/AuForm.jsx'
+import { useState } from 'react'
+export default function App() {
+  const [showAuForm, setshowAuForm] = useState(false);
+  const handleShowAuForm = () =>{
+    setshowAuForm(true);
   }
+  const handleCloseAuForm = () =>{
+    //alert("check");
+    setshowAuForm(false);
+  }
+  return (
+    <>
+      <AuForm setshowAuForm = {handleShowAuForm} showAuForm = {showAuForm} handleCloseAuForm = {handleCloseAuForm} ></AuForm>
+      <Header handleShowAuForm = {handleShowAuForm} ></Header>
+      <Outlet></Outlet>
+      <Footer></Footer>
+    </>
+
+  )
 }
-export default App

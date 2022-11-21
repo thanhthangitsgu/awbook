@@ -31,7 +31,6 @@ class CartBox extends React.Component {
                 show: !this.state.show
             })
         }
-
         return (
             <div className="popup-box" ref={this.wrapperRef}>
                 <button className={this.state.show === true ? "btn-click btn-popup" : "btn-popup"} onClick={() => show()}>
@@ -82,7 +81,7 @@ class CartBox extends React.Component {
                     </div>
                     <div className="box-triangle"></div>
                 </div>
-
+                <div className="box-number">{this.props.cart.length}</div>
             </div>
         )
     }

@@ -181,7 +181,7 @@
     }
     
     .btn-click {
-        background-color: #b73e3e!important;
+        background-color: #b73e3e !important;
         svg {
             color: white;
         }
@@ -198,7 +198,7 @@
             transition: all 0.5s ease;
             @include center-element();
             &:focus-within {
-                background-color: #fffae7;
+                //background-color: #fffae7;
                 width: 80%;
             }
             input {
@@ -305,7 +305,7 @@
                 .dot {
                     width: 10px;
                     height: 10px;
-                    background: black;
+                    background: #000000;
                     border-radius: 50%;
                     opacity: 50%;
                     cursor: pointer;
@@ -517,5 +517,119 @@
         color: white;
         font: {
             weight: bold;
+        }
+    }
+    
+    .modal-title-au {
+        width: 100% !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 0 1rem;
+        div {
+            width: 50%;
+            display: inline-block;
+            position: relative;
+            color: black;
+            text-align: center;
+            &:hover {
+                cursor: pointer;
+                color: #b73e3e
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                transform: scaleX(0);
+                bottom: -0.5rem;
+                left: 0;
+                border: 1px double #b73e3e;
+                transition: transform 0.3s ease-out;
+            }
+            &:hover::after {
+                transform: scaleX(1);
+            }
+        }
+        .modal-active {
+            color: #b73e3e !important;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                transform: scaleX(1);
+                bottom: -0.5rem;
+                left: 0;
+                border: 1px double #b73e3e;
+                transform-origin: bottom center;
+                transition: transform 0.3s ease-out;
+            }
+        }
+        font: {
+            size: 1rem;
+            weight: normal
+        }
+    }
+    
+    .modal-title h4 {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .modal-header {
+        display: block;
+    }
+    
+    .login-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font: {
+                size: 1rem
+            }
+            flex-direction: column;
+            width: 80%;
+            input {
+                width: 100%;
+                height: 2.5rem;
+                margin-bottom: 1rem;
+                background-color: #EEEEEE;
+                border-radius: 5px;
+                padding-left: 1rem;
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+            button {
+                width: 60%;
+                border: none;
+                height: 2.5rem;
+                border-radius: 20px;
+                color: white;
+                background-color: #b73e3e;
+                &:disabled {
+                    background-color: #DDDDDD;
+                    color: #666666;
+                }
+            }
+        }
+        .forgot-password {
+            margin-top: 1rem;
+            color: orange;
+            text-align: right;
+            &:hover {
+                color: #b73e3e;
+                cursor: pointer;
+            }
+        }
+        .modal-content {
+            transition: all ease-out 0.3s;
         }
     }

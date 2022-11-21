@@ -1,4 +1,4 @@
-export default function BtnSlider({ dir, moveSlide }) {
+export default function ControlSlide({ dir, moveSlide }) {
   const right = (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -4,6 +4,7 @@
     &-directory {
         margin: 0 0 0.5rem 0;
     }
+    height: auto;
 }
 
 .page-book-body {
@@ -45,26 +46,36 @@
 
 .option-box-list {
     overflow: hidden;
+    height: 10rem;
     transition: all ease-out 0.3s;
     margin: 0rem 1rem 1rem 1rem;
     .option-item {
         padding: 0.1rem 0;
-        input {
-            width: 1rem;
-            height: 1rem;
-        }
+        display: flex;
         label {
-            margin-left: 1rem;
+            margin-left: 0.5rem;
         }
     }
+    a {
+        &:hover {
+            color: orange;
+        }
+    }
+}
+
+.option-box-list-show {
+    height: fit-content;
 }
 
 .btn-view-all {
     padding: 0.5rem;
     text-align: center;
+    color: orange;
+    font: {
+        weight: bold;
+    }
     &:hover {
         cursor: pointer;
-        color: orange;
     }
 }
 
@@ -141,6 +152,276 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .book-discount {
+            z-index: 3;
+            background-color: #b73e3e;
+        }
+    }
+}
+
+.option-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.active {
+    color: orange;
+    font: {
+        weight: bold;
+    }
+}
+
+.book-active-link {
+    color: orange;
+    font: {
+        weight: bold;
+    }
+}
+
+.cate-item {
+    //transition: all ease-out 0.1s;
+    &:hover {
+        cursor: pointer;
+        color: orange;
+    }
+}
+
+// Chi tiết
+.page-detail-body {
+    width: 100%;
+    height: 80vh;
+    background-color: white;
+    border-radius: 5px;
+    //overflow: hidden;
+    display: inline-flex;
+}
+
+.page-detail-image {
+    // background-color: gray;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    padding: 1rem;
+}
+
+.page-detail-content {
+    width: 60%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-slide-image {
+    background-color: white;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .slide-image {
+        width: 6rem;
+        height: 6rem;
+        padding: 0.2rem;
+        border: 1px solid black;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+.detail-image {
+    background-color: white;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1.5px solid rgb(240, 240, 240);
+    ;
+    .image-book {
+        width: 100%;
+        height: 100%;
+        margin-left: 1rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+.detail-header {
+    width: 100%;
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid rgb(240, 240, 240);
+    .detail-title {
+        font: {
+            // weight: bold;
+            size: 1.5rem;
+            family: 'Poynter,Georgia,serif'
+        }
+    }
+    .detail-author {
+        font: {
+            font-family: "Lato,sans-serif";
+        }
+        span {
+            color: orange;
+        }
+    }
+}
+
+.detail-price {
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+    padding: 1rem;
+    background-color: rgb(240, 240, 240);
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    .price {
+        color: #b73e3e;
+        font: {
+            size: 2rem;
+            // family: 'Poynter,Georgia,serif';
+            weight: bold
+        }
+    }
+    .discount {
+        padding-top: 0.5rem;
+        height: 100%;
+        opacity: 60%;
+        text-decoration-line: line-through;
+        font: {
+            size: 1.5rem;
+        }
+    }
+    .note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #b73e3e;
+        padding: 0.2rem;
+        height: 0.5rem;
+        border-radius: 0.5rem;
+        color: white;
+        height: 50%;
+        font: {
+            size: 0.8rem;
+            weight: bold
+        }
+    }
+}
+
+.detail-number {
+    display: flex;
+    margin-top: 2rem;
+    .title {
+        font: {
+            weight: bold
+        }
+    }
+    .btn-num {
+        padding-left: 1rem;
+        display: flex;
+        gap: 0 0.5rem
+    }
+    button {
+        border: none;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        &:hover {
+            background-color: #DDDDDD;
+        }
+    }
+    .number {
+        margin-left: 1rem;
+        opacity: 70%;
+    }
+}
+
+.detail-button {
+    border-bottom: 1.5px solid rgb(240, 240, 240);
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    display: flex;
+    gap: 0 1rem;
+    button {
+        border: 2px solid #b73e3e;
+        background-color: #b73e3e;
+        color: white;
+        padding: 0.5em;
+        &:hover {}
+    }
+    .detail-add {
+        background-color: white;
+        color: #b73e3e;
+        transition: all ease-out 0.3s;
+        &:hover {
+            color: white;
+            background-color: #b73e3e;
+        }
+    }
+}
+
+.detail-table {
+    width: 100%;
+    margin-top: 1rem;
+    .detail-row {
+        display: flex;
+        margin-bottom: 1rem;
+        .table-header {
+            width: 20%;
+            font-weight: bold;
+        }
+    }
+}
+
+.page-book-describe {
+    height: 15rem;
+    display: flex;
+    gap: 0 1rem;
+    .content {
+        border-radius: 5px;
+        background-color: white;
+        width: 80%;
+        padding: 1rem;
+        .title {
+            font: {
+                weight: bold;
+                size: 1.5rem
+            }
+            padding-bottom: 1rem;
+        }
+    }
+    .discount {
+        margin-top: 0.5rem;
+        border-radius: 5px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
         }
     }
 }

@@ -1,4 +1,4 @@
-import BtnSlider from './BtnSlider'
+import ControlSlide from './ControlSlide'
 import React from 'react'
 class Slider extends React.Component {
   state = {
@@ -65,8 +65,8 @@ class Slider extends React.Component {
           )
         })}
 
-        <BtnSlider dir={'next'} moveSlide={nextSlide}></BtnSlider>
-        <BtnSlider dir={'prev'} moveSlide={prevSlide}></BtnSlider>
+        <ControlSlide  dir={'next'} moveSlide={nextSlide}></ControlSlide>
+        <ControlSlide dir={'prev'} moveSlide={prevSlide}></ControlSlide>
         <div className="slider-dot">
           {Array.from({ length: listSlide.length }).map((item, index) => (
             <div

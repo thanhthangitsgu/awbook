@@ -19,13 +19,10 @@ Route::get('/', function () {
 Route::get('/book', function(){
     return view('index');
 });
-Route::get('/contact', function(){
-    return view('index');
-});
-Route::get('/discount', function(){
-    return view('index');
-});
-Route::get('/about', function(){
-    return view('index');
-});
 
+Route::get('/book/{id}', function(){
+    return view('index');
+});
+Route::get('/detail/{id}', function(){
+    return view('index');
+});

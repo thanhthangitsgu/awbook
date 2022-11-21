@@ -11,6 +11,7 @@ import store from './store/store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Book from './pages/Book'
 import Home from './pages/Home'
+import DetailBook from './pages/DetailBook'
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -19,7 +20,8 @@ if (document.getElementById('app')) {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<App />}>
-              <Route path='book' element={<Book></Book>}></Route>
+              <Route path='book/*' element={<Book></Book>}></Route>
+              <Route path='detail/:id' element={<DetailBook></DetailBook>}></Route>
               <Route index element={<Home></Home>}></Route>
             </Route>
           </Routes>

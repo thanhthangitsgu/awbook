@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
+import removeVietnameseTones from '../globalFunction';
 class CategoryBox extends React.Component {
   state = {
     show: false
@@ -66,8 +67,8 @@ class CategoryBox extends React.Component {
             <div className="box-list-item">
               {category.map((element, index) => {
                 return (
-                  <Link to ="/book">
-                    <div className="box-item" key={index}>
+                  <Link to ={"/book/"+removeVietnameseTones(element.name)}>
+                    <div className="box-item" key={index} onClick={() => show()}>
                       <div className="box-icon">
                         <img src="https://img.icons8.com/fluency/96/null/diversity.png" />
                       </div>
@@ -81,13 +82,12 @@ class CategoryBox extends React.Component {
           </div>
           <div className="box-triangle"></div>
         </div>
-
       </div>
     )
   }
 }
 const mapStateToProps = (state) => {
-  return { category: state.category.list }
+  return { category: state.category.listCategory }
 }
 
 export default connect(mapStateToProps)(CategoryBox)
