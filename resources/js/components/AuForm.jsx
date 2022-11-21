@@ -18,6 +18,9 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
         passwordRe: "",
         fullnameRe: "",
         confirmRe: "",
+        validEmailRe: "",
+        validPasswordRe: "",
+        validFullnameRe: "",
     }
   
     const [stateLogin, setStateLogin] = useState(INITIAL_STATELOGIN);
@@ -41,6 +44,13 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
     const handleOnChangeRegister = (event) => {
         let name = event.target.name;
         let val = event.target.value;
+        let reFullName = /^([a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+)((\s{1}[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+){1,})$/g
+        switch (name){
+            case "fullnameRe":
+                let valid = (re.test(val.toLowerCase()));
+                setStateRegister({...setStateRegister, [name]:val, validFullnameRe: valid});
+                console.log(stateRegister);
+        }
         setStateRegister({ ...stateRegister, [name]: val });
     }
     const checkOutside = () => {
@@ -50,8 +60,12 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
     const handleSubmitLogin = (event) =>{
         event.preventDefault();
         dispatch(allActions.authActions.handleLogin({stateLogin}))
-        console.log(auth);
     } 
+    const handleSubmitRegister = (event) =>{
+        event.preventDefault();
+        dispatch(allActions.authActions.handleLogin({stateLogin}))
+    } 
+
 
     const logInForm = (
         <div className="login-form">
@@ -70,7 +84,7 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
                 <input type="text" placeholder="Email" name="emailRe" value={stateRegister.emailRe} onChange={() => handleOnChangeRegister(event)} />
                 <input type="text" placeholder="Mật khẩu" name="passwordRe" value={stateRegister.passwordRe} onChange={() => handleOnChangeRegister(event)} />
                 <input type="text" placeholder="Nhập lại mật khẩu" name="confirmRe" value={stateRegister.confirmRe} onChange={() => handleOnChangeRegister(event)} />
-                <button className="btn-register"> Đăng ký</button>
+                <button className="btn-register" disabled> Đăng ký</button>
             </form>
         </div>
     )
