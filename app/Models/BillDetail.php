@@ -13,6 +13,7 @@ class BillDetail extends Model
         'book_id',
         'amount',
         'price',
+        'cost',
         'status'
     ];
 }

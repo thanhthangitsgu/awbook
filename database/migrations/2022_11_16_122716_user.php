@@ -17,11 +17,11 @@ return new class extends Migration
             $table->increments('id');
             $table->string('surname',100);
             $table->string('name',100);
-            $table->string('gender',10);
+            $table->string('gender',10)->nullable();
             $table->date('date_of_birth')->nullable();
             $table->integer('position_id')->unsigned();
-            $table->string('phone',50);
-            $table->string('address',200);
+            $table->string('phone',50)->nullable();
+            $table->string('address',200)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
