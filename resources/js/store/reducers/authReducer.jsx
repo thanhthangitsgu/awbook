@@ -4,6 +4,14 @@ const initState = {
     token: null,
 }
 const authReducer = (state = initState, action) => {
-    return state
+    switch (action.type) {
+        case 'auth/handleLogin':
+            let data = action.data;
+            return {
+                ...state, data
+            }
+        default:
+            return state;
+    }
 }
 export default authReducer

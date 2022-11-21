@@ -1,7 +1,11 @@
 import { Modal } from "react-bootstrap"
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import allActions from "../store/actions/allActions";
 export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm }) {
     const [openLogin, setOpenLogin] = useState(true);
+    const auth = useSelector(state => state.auth ); 
+    const dispatch = useDispatch();
     // const [username, setUserName] = useState("");
     const INITIAL_STATELOGIN = {
         emailLogin: "",
@@ -41,15 +45,20 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
     }
     const checkOutside = () => {
         handleCloseAuForm();
-
     }
+
+    const handleSubmitLogin = (event) =>{
+        event.preventDefault();
+        dispatch(allActions.authActions.handleLogin({stateLogin}))
+        console.log(auth);
+    } 
 
     const logInForm = (
         <div className="login-form">
             <form action="">
                 <input type="text" placeholder="Email" name="emailLogin" value={stateLogin.email} onChange={() => handleOnChangeLogin( event)} />
                 <input type="text" placeholder="Mật khẩu" name="passwordLogin" value={stateLogin.password} onChange={() => handleOnChangeLogin( event)} />
-                <button className="btn-login" disabled = {stateLogin.validEmail === false || stateLogin.validPassword === false }> Đăng nhập</button>
+                <button className="btn-login" disabled = {stateLogin.validEmail === false || stateLogin.validPassword === false } onClick={() => handleSubmitLogin(event) }> Đăng nhập</button>
                 <div class="forgot-password">Quên mật khẩu?</div>
             </form>
         </div>
