@@ -41,9 +41,9 @@ class BookController extends Controller
         }
 
         if(!isset($input['amount']))
-            $input['amount']=0;
+            $input['amount'] = 0;
 
-        $input['status']=1;
+        $input['status'] = 1;
         $book = Book::create($input);
 
         $arr = ['status' => true,

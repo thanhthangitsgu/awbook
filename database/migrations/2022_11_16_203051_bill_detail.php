@@ -17,8 +17,9 @@ return new class extends Migration
             $table->integer('bill_id')->unsigned();
             $table->integer('book_id')->unsigned(); 
             $table->integer('amount'); 
-            $table->integer('price');
-            $table->integer('status');
+            $table->integer('price'); //giá bán
+            $table->integer('cost'); //giá gốc
+            $table->integer('status')->default('1');
             $table->timestamps();
             $table->primary(['bill_id','book_id']);
             $table->foreign('bill_id')->references('id')->on('bills')->onDelete('cascade');

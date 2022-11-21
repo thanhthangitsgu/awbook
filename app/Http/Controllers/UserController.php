@@ -29,10 +29,7 @@ class UserController extends Controller
         $validator = Validator::make($input, [
             'surname' => 'required', 
             'name' => 'required',
-            'gender' => 'required',
             'position_id' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
             'email' => 'required'
         ]);
         
