@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Config;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +16,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        Auth::shouldUse('api');
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
     
     public function register(Request $request) 
@@ -54,7 +52,7 @@ class AuthController extends Controller
         ]);
         
         if($validator->fails()){
-            return response()->json(['error'=>$validator->errors()->all()],400);
+            return response()->json(['error'=>$validator->errors()->all()],422);
         }
         
         Config::set('jwt.user', 'App\Models\User'); 
@@ -66,6 +64,7 @@ class AuthController extends Controller
                 'response' => 'success',
                 'result' => [
                     'token' => $token,
+                    'user' => Auth::user()
                 ],
             ]);
         }

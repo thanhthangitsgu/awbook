@@ -17,46 +17,100 @@ class PermissionsTableSeeder extends Seeder
     {
         $permission = [
             [
-                'name'=>'Quản lý người dùng'
-            ],
-            [
-                'name'=>'Quản lý sách'
-            ],
-            [
-                'name'=>'Quản lý thể loại'
-            ],
-            [
-                'name'=>'Quản lý nhà xuất bản'
+                'name'=>'Xem khuyến mãi'
             ],
             [
                 'name'=>'Quản lý khuyến mãi'
             ],
             [
-                'name'=>'Quản lý tác giả'
+                'name'=>'Xem nhà xuất bản'
             ],
             [
-                'name'=>'Quản lý chức vụ'
+                'name'=>'Quản lý nhà xuất bản'
             ],
             [
-                'name'=>'Quản lý đối tác'
+                'name'=>'Xem phương thức thanh toán'
             ],
             [
                 'name'=>'Quản lý phương thức thanh toán'
             ],
             [
-                'name'=>'Quản lý hóa đơn'
+                'name'=>'Xem tác giả'
             ],
             [
-                'name'=>'Quản lý phiếu nhập'
+                'name'=>'Quản lý tác giả'
+            ],
+            [
+                'name'=>'Xem thể loại'
+            ],
+            [
+                'name'=>'Quản lý thể loại'
+            ],
+            [
+                'name'=>'Xem đối tác'
+            ],
+            [
+                'name'=>'Quản lý đối tác'
+            ],
+            [
+                'name'=>'Xem đầu sách'
             ],
             [
                 'name'=>'Quản lý đầu sách'
             ],
             [
-                'name'=>'Thống kê'
+                'name'=>'Xem sách'
             ],
             [
-                'name'=>'Phân quyền'
+                'name'=>'Quản lý sách'
+            ],
+            [
+                'name'=>'Xem thể loại - đầu sách'
+            ],
+            [
+                'name'=>'Quản lý thể loại - đầu sách'
+            ],
+            [
+                'name'=>'Xem chi tiết hóa đơn'
+            ],
+            [
+                'name'=>'Quản lý chi tiết hóa đơn'
+            ],
+            [
+                'name'=>'Xem quyền'
+            ],
+            [
+                'name'=>'Quản lý quyền'
+            ],
+            [
+                'name'=>'Xem chức vụ'
+            ],
+            [
+                'name'=>'Quản lý chức vụ'
+            ],
+            [
+                'name'=>'Xem chi tiết quyền'
+            ],
+            [
+                'name'=>'Quản lý chi tiết quyền'
+            ],
+            [
+                'name'=>'Xem người dùng'
+            ],
+            [
+                'name'=>'Quản lý người dùng'
+            ],
+            [
+                'name'=>'Xem hóa đơn'
+            ],
+            [
+                'name'=>'Quản lý hóa đơn'
+            ],
+            [
+                'name'=>'Xem chi tiết hóa đơn'
+            ],
+            [
+                'name'=>'Quản lý chi tiết hóa đơn'
             ],
         ];
     
