@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        Auth::shouldUse('api');
     }
     
     public function register(Request $request) 
@@ -72,7 +72,7 @@ class AuthController extends Controller
         return response()->json([
             'response' => 'error',
             'message' => 'invalid_email_or_password',
-        ],400);
+        ],200);
     }
 
     public function logout()
@@ -81,7 +81,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Unauthorized'
-            ], 401);
+            ], 201);
         }
 
         Auth::guard('api')->logout();
@@ -114,7 +114,7 @@ class AuthController extends Controller
         else{
             return response()->json([
                 'status' => false,
-            ], 401);
+            ], 201);
         }
     }
 }
