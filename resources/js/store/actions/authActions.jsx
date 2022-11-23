@@ -1,30 +1,21 @@
 import axios from "axios"
-
-const handleLogin = (person) => {
-    /*axios({
-        method: 'post',
-        url: '/api/login',
-        data: {
-            email: person.emailLogin,
-            password: person.passwordLogin
-        }
-    }).then(function (response) {
-        payload = response;
-    });*/
+import axiosClient from "../api/axiousClient";
+const fetchAu = (person) => async (dispatch) => {
     const data = {
-       email: 'thang@gmail.com',
-       password: '12345678'
+        email : person.stateLogin.emailLogin,
+        password: person.stateLogin.passwordLogin
     }
-    axios.post('/api/login/', data).then(response =>{
-        console.log("check res", response);
-    }); 
-
+    const res = await axiosClient.post('api/login', data);
+    dispatch(handleLogin(res.data)); 
+}
+const handleLogin = (res) => {
     return {
         type: 'auth/handleLogin',
-        payload: data,
+        payload: res
     }
 }
 
 export default {
-    handleLogin
+    handleLogin,
+    fetchAu
 }

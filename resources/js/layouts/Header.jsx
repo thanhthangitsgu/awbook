@@ -13,7 +13,7 @@ class Header extends React.Component {
   listItem = ['Sách văn học', 'Sách thiếu nhi', 'Sách cổ điển']
 
   render() {
-    const handleShowAuForm = () =>{
+    const handleShowAuForm = () => {
       this.props.handleShowAuForm();
     }
     return (
@@ -26,8 +26,7 @@ class Header extends React.Component {
               <CategoryBox></CategoryBox>
               <NotiBox></NotiBox>
               <div className="cart-box"><CartBox></CartBox></div>
-              <div className="user-box"><UserBox handleShowAuForm = {handleShowAuForm}></UserBox></div>
-              {/*<div className="user-box"><UserBox showAuForm = {this.props.showAuForm}></UserBox></div>*/}
+              <div className="user-box"><UserBox handleShowAuForm={handleShowAuForm}></UserBox></div>
             </div>
           </div>
         </div>

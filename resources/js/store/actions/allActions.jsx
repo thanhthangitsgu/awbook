@@ -1,7 +1,9 @@
 import detailBookActions from "./detailBookActions"
 import authActions from "./authActions";
+import roleActions from "./roleActions";
 const allActions = {
     detailBookActions, 
-    authActions
+    authActions, 
+    roleActions
 }
 export default allActions;

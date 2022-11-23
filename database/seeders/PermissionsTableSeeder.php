@@ -71,12 +71,6 @@ class PermissionsTableSeeder extends Seeder
                 'name'=>'Quản lý thể loại - đầu sách'
             ],
             [
-                'name'=>'Xem chi tiết hóa đơn'
-            ],
-            [
-                'name'=>'Quản lý chi tiết hóa đơn'
-            ],
-            [
                 'name'=>'Xem quyền'
             ],
             [
@@ -111,6 +105,18 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'name'=>'Quản lý chi tiết hóa đơn'
+            ],
+            [
+                'name'=>'Xem phiếu nhập'
+            ],
+            [
+                'name'=>'Quản lý phiếu nhập'
+            ],
+            [
+                'name'=>'Xem chi tiết phiếu nhập'
+            ],
+            [
+                'name'=>'Quản lý chi tiết phiếu nhập'
             ],
         ];
     

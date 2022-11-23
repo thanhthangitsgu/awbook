@@ -67,8 +67,8 @@ class CategoryBox extends React.Component {
             <div className="box-list-item">
               {category.map((element, index) => {
                 return (
-                  <Link to ={"/book/"+removeVietnameseTones(element.name)}>
-                    <div className="box-item" key={index} onClick={() => show()}>
+                  <Link to ={"/book/"+removeVietnameseTones(element.name)}  key={index} >
+                    <div className="box-item" onClick={() => show()}>
                       <div className="box-icon">
                         <img src="https://img.icons8.com/fluency/96/null/diversity.png" />
                       </div>

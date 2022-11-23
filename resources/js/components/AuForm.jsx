@@ -2,11 +2,15 @@ import { Modal } from "react-bootstrap"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import allActions from "../store/actions/allActions";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm }) {
     const [openLogin, setOpenLogin] = useState(true);
-    const auth = useSelector(state => state.auth ); 
+    const [isLogged, setIsLogged] = useState(false);
+    const auth = useSelector(state => state.auth);
+    const profile = useSelector(state => state.user)
     const dispatch = useDispatch();
-    // const [username, setUserName] = useState("");
+    const navigate = useNavigate();
     const INITIAL_STATELOGIN = {
         emailLogin: "",
         passwordLogin: "",
@@ -18,17 +22,19 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
         passwordRe: "",
         fullnameRe: "",
         confirmRe: "",
-        validEmailRe: "",
-        validPasswordRe: "",
-        validFullnameRe: "",
+        validEmailRe: false,
+        validPasswordRe: true,
+        validFullnameRe: false,
     }
-  
+
     const [stateLogin, setStateLogin] = useState(INITIAL_STATELOGIN);
     const [stateRegister, setStateRegister] = useState(INITIAL_STATEREGISTER);
+
 
     const handleOnClickOpenForm = () => {
         setOpenLogin(!openLogin);
     }
+
     const handleOnChangeLogin = (event) => {
         let val = event.target.value;
         let name = event.target.name;
@@ -41,39 +47,67 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
         }
 
     }
-    const handleOnChangeRegister = (event) => {
-        let name = event.target.name;
-        let val = event.target.value;
-        let reFullName = /^([a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+)((\s{1}[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+){1,})$/g
-        switch (name){
-            case "fullnameRe":
-                let valid = (re.test(val.toLowerCase()));
-                setStateRegister({...setStateRegister, [name]:val, validFullnameRe: valid});
-                console.log(stateRegister);
-        }
-        setStateRegister({ ...stateRegister, [name]: val });
-    }
+    const handleOnChangeRegister = (event) => {}
+    //     let name = event.target.name;
+    //     let val = event.target.value;
+    //     let valid = true;
+    //     let reFullName = /^([a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+)((\s{1}[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+){1,})$/g
+    //     switch (name) {
+    //         case "fullnameRe":
+    //             valid = (reFullName.test(val.toLowerCase()));
+    //             setStateRegister({ ...stateRegister, [name]: val, validFullnameRe: true });
+    //             setStateRegister({ ...stateRegister, validFullnameRe: true })
+    //             //setStateRegister({validFullnameRe: true})
+    //             console.log("check fullname", stateRegister.validFullnameRe);
+    //             break;
+    //         case "emailRe":
+    //             valid = ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)));
+    //             setStateRegister({ ...stateRegister, [name]: val, validEmailRe: valid });
+    //             break;
+    //         case "passwordRe":
+    //             valid = val.length && val.length >= 8
+    //             setStateRegister({ ...stateRegister, [name]: val, validPasswordRe: valid });
+    //             break;
+    //         default:
+    //             valid = (val === stateRegister.passwordRe)
+    //             setStateRegister({ ...stateRegister, [name]: val, validPasswordRe: valid });
+    //     }
+    //     //setStateRegister({...stateRegister, validFullnameRe: true});
+    //     console.log(stateRegister);
+    // }
     const checkOutside = () => {
         handleCloseAuForm();
     }
 
-    const handleSubmitLogin = (event) =>{
-        event.preventDefault();
-        dispatch(allActions.authActions.handleLogin({stateLogin}))
-    } 
-    const handleSubmitRegister = (event) =>{
-        event.preventDefault();
-        dispatch(allActions.authActions.handleLogin({stateLogin}))
-    } 
 
+    const handleSubmitLogin = (event) => {
+        event.preventDefault();
+        dispatch(allActions.authActions.fetchAu({ stateLogin }));
+    }
+    const handleSubmitRegister = (event) => {
+        event.preventDefault();
+
+    }
+    useEffect(() => {
+        console.log(auth);
+        if (auth.response && auth.response === "success") {
+            setIsLogged(true);
+            localStorage.setItem('token', auth.result.token);
+            navigate("/");
+        }
+    }, [auth])
+
+    useEffect(() => {
+        console.log("check pro ", profile);
+    }, [profile])
 
     const logInForm = (
         <div className="login-form">
             <form action="">
-                <input type="text" placeholder="Email" name="emailLogin" value={stateLogin.email} onChange={() => handleOnChangeLogin( event)} />
-                <input type="text" placeholder="Mật khẩu" name="passwordLogin" value={stateLogin.password} onChange={() => handleOnChangeLogin( event)} />
-                <button className="btn-login" disabled = {stateLogin.validEmail === false || stateLogin.validPassword === false } onClick={() => handleSubmitLogin(event) }> Đăng nhập</button>
-                <div class="forgot-password">Quên mật khẩu?</div>
+                <input type="text" placeholder="Email" name="emailLogin" value={stateLogin.email} onChange={() => handleOnChangeLogin(event)} />
+                <input type="text" placeholder="Mật khẩu" name="passwordLogin" value={stateLogin.password} onChange={() => handleOnChangeLogin(event)} />
+                <button className="btn-login" disabled={stateLogin.validEmail === false || stateLogin.validPassword === false} onClick={() => handleSubmitLogin(event)}> Đăng nhập</button>
+                <div className="forgot-password">Quên mật khẩu?</div>
             </form>
         </div>
     )
@@ -84,12 +118,12 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
                 <input type="text" placeholder="Email" name="emailRe" value={stateRegister.emailRe} onChange={() => handleOnChangeRegister(event)} />
                 <input type="text" placeholder="Mật khẩu" name="passwordRe" value={stateRegister.passwordRe} onChange={() => handleOnChangeRegister(event)} />
                 <input type="text" placeholder="Nhập lại mật khẩu" name="confirmRe" value={stateRegister.confirmRe} onChange={() => handleOnChangeRegister(event)} />
-                <button className="btn-register" disabled> Đăng ký</button>
+                <button className="btn-register" disabled={stateRegister.validEmailRe === false || stateRegister.validFullnameRe === false || stateRegister.validPasswordRe === false}> Đăng ký</button>
             </form>
         </div>
     )
     return (
-        <Modal show={showAuForm} onHide={checkOutside} centered >
+        <Modal show={showAuForm && !isLogged} onHide={checkOutside} centered >
             <Modal.Header>
                 <Modal.Title>
                     <div className="modal-title-au">

@@ -19,6 +19,15 @@ Route::get('/', function () {
 Route::get('/book', function(){
     return view('index');
 });
+Route::get('/admin', function(){
+    return view('index');
+});
+Route::get('/admin/{id}', function(){
+    return view('index');
+});
+Route::get('/admin/{obj}/{id}', function(){
+    return view('index');
+});
 
 Route::get('/book/{id}', function(){
     return view('index');
@@ -26,3 +35,5 @@ Route::get('/book/{id}', function(){
 Route::get('/detail/{id}', function(){
     return view('index');
 });
+
+

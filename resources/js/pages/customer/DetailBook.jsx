@@ -2,13 +2,13 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import allActions from "../store/actions/allActions";
-import formatCash from "../GlobalFunction/formatCash"
+import allActions from "../../store/actions/allActions";
+import formatCash from "../../GlobalFunction/formatCash"
 import { useState } from "react";
-import SliderBook from "../components/Slider/SliderBook";
-import ButtonNumber from "../components/ButtonNumber";
+import SliderBook from "../../components/Slider/SliderBook";
+import ButtonNumber from "../../components/ButtonNumber";
 import { ToastContainer, toast } from "react-toastify";
-import AddToCart from "../components/AddToCart";
+import AddToCart from "../../components/AddToCart";
 import { useLocation } from "react-router-dom";
 export default function DetailBook() {
     const bookID = useParams();

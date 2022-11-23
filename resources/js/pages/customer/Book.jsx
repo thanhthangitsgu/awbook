@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, Outlet, Route, Routes, } from "react-router-dom";
-import BookActions from "../store/actions/bookActions";
+import BookActions from "../../store/actions/bookActions";
 import { connect } from "react-redux";
-import ListCategory from "../components/ListCategory";
-import ListBook from "../components/ListBook";
+import ListCategory from "../../components/ListCategory";
+import ListBook from "../../components/ListBook";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 class Book extends React.Component {

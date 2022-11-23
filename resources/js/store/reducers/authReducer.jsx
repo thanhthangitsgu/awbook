@@ -1,15 +1,9 @@
-const initState = {
-    idUser: null,
-    fullName: null,
-    token: null,
-}
+const initState = {}
 const authReducer = (state = initState, action) => {
     switch (action.type) {
         case 'auth/handleLogin':
-            let data = action.data;
-            return {
-                ...state, data
-            }
+            state = action.payload;
+            return state;
         default:
             return state;
     }
