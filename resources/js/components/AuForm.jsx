@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import allActions from "../store/actions/allActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import allAPI from "../store/api/allAPI";
 export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm }) {
     const [openLogin, setOpenLogin] = useState(true);
     const [isLogged, setIsLogged] = useState(false);
@@ -47,7 +48,7 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
         }
 
     }
-    const handleOnChangeRegister = (event) => {}
+    const handleOnChangeRegister = (event) => { }
     //     let name = event.target.name;
     //     let val = event.target.value;
     //     let valid = true;
@@ -89,16 +90,18 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
 
     }
     useEffect(() => {
-        console.log(auth);
         if (auth.response && auth.response === "success") {
             setIsLogged(true);
             localStorage.setItem('token', auth.result.token);
+            dispatch(allAPI.userAPI.getProfile());
             navigate("/");
         }
-    }, [auth])
+    }, [auth]);
 
     useEffect(() => {
-        console.log("check pro ", profile);
+        if (profile.response) {
+            if (profile.result.user.poisition_id == 1) navigate('/admin');
+        }
     }, [profile])
 
     const logInForm = (

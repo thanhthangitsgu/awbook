@@ -21,7 +21,7 @@ function Home() {
                     </div>
                     <div className="slider-book-random">
                         <img
-                            src="http://127.0.0.1:5173/public/images/slideshow/3.jpg"
+                            src="https://decopro.vn/wp-content/uploads/2019/05/Sach-trang-tri-hien-dai-1.jpg"
                             alt="Xem chi tiết"
                         />
                         <div className="slider-book-background">

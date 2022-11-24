@@ -1,10 +1,13 @@
 import { useState } from "react"
 import OutsideAlerter from "./OutsideAlerter";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 export default function UserBox({ handleShowAuForm }) {
     const [open, setOpen] = useState(false);
-    const auth = useSelector(state => state.auth);
-    console.log(auth);
+    const user = useSelector(state => state.user);
+    const [current, setcurrent] = useState([]);
+    const nav = useNavigate();
     const handleCloseBox = () => {
         setOpen(false);
     }
@@ -13,6 +16,15 @@ export default function UserBox({ handleShowAuForm }) {
     }
     const hanldeOnClick = () => {
         setOpen(!open);
+    }
+    useEffect(() => {
+        setcurrent(user.current);
+    }, [user]);
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setcurrent([]);
+        nav('/');
     }
 
     const isLogged = (
@@ -30,7 +42,7 @@ export default function UserBox({ handleShowAuForm }) {
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
                 </button>
-                <div className="box-name-accout">{auth.result ?  (auth.result.user.surname + " " + auth.result.user.name) : ""}</div>
+                <div className="box-name-accout">{current[0] ? (current[0].response.surname + " " + current[0].response.name) : ""}</div>
             </div>
             <div className={open === true ? "box-body" : "box-body box-hiden"}>
                 <div className="box-content">
@@ -69,7 +81,7 @@ export default function UserBox({ handleShowAuForm }) {
                             <div className="box-item-content">Đổi mật khẩu</div>
                         </div>
                     </div>
-                    <div className="box-footer">Đăng xuất</div>
+                    <div className="box-footer" onClick={logout}>Đăng xuất</div>
                 </div>
                 <div className="box-triangle"></div>
             </div>
@@ -86,6 +98,6 @@ export default function UserBox({ handleShowAuForm }) {
         </div>
     )
     return (
-        auth.response === "success" ? OutsideAlerter(isLogged, handleCloseBox) : OutsideAlerter(notLogged, handleCloseBox)
+        current[0] ? OutsideAlerter(isLogged, handleCloseBox) : OutsideAlerter(notLogged, handleCloseBox)
     )
 }

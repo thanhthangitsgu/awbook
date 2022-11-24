@@ -3,7 +3,7 @@ import React from 'react'
 class Slider extends React.Component {
   state = {
     indexSlide: 1,
-    lenght : 3
+    lenght : 4
   }
   
   componentDidMount() {
@@ -18,13 +18,16 @@ class Slider extends React.Component {
   render() {
     const listSlide = [
         {
-          link: 'http://127.0.0.1:5173/public/images/slideshow/3.jpg',
+          link: 'https://thietkekhainguyen.com/wp-content/uploads/2018/10/sach-anh-dep3.jpg',
         },
         {
-          link: 'http://127.0.0.1:5173/public/images/slideshow/1.jpg',
+          link: 'http://static.ybox.vn/2017/3/21/5cade000-0ddd-11e7-a84a-2e995a9a3302.jpg',
         },
         {
-          link: 'http://127.0.0.1:5173/public/images/slideshow/2.jpg',
+          link: 'https://product.hstatic.net/200000201143/product/sach_trang_tri_chup_anh_san_pham__2__883a94ac1f094a3d830a87f9627b2f17_master.jpg',
+        },
+        {
+          link: 'https://tienganhfree.com/wp-content/uploads/2018/11/3126981015bb11e7ae28b9f83783eb34-1441.jpg',
         },
       ]
     const nextSlide = () => {

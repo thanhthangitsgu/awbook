@@ -7,7 +7,6 @@ export default function Authentization({ role }) {
     const userLogin = useSelector(state => state.auth);
     const roleuser = userLogin.response ? userLogin.result.user.position_id : "";
     const navigate = useNavigate();
-
     const nav = () => {
         navigate('/')
     }

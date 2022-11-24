@@ -6,8 +6,12 @@ const getProfile = () => async (dispatch) => {
 }
 const getAll = () => async (dispatch) => {
     const res = await axiosClient.get('api/user');
-    dispatch(userActions.getAll(res))
+    dispatch(userActions.getAll(res));
+}
+const deleteOne = (id) => async (dispatch) => {
+    const res = await axiosClient.delete('api/user/'+id);
+    dispatch(userActions.deleteOne(res));
 }
 export default {
-    getProfile, getAll
+    getProfile, getAll, deleteOne
 }

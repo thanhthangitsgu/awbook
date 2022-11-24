@@ -20,8 +20,7 @@ export default function DetailBook() {
     let book = listBook.listBook.filter(item => item.id == bookID.id)[0];
     const [number, setNumber] = useState(1);
     const incNumber = () => {
-        if (number < 100) setNumber(number + 1);
-        console.log(number);
+        if (number < book.amount) setNumber(number + 1);
     }
     const desNumber = () => {
         if (number > 1) setNumber(number - 1);

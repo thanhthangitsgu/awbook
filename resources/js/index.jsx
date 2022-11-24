@@ -29,7 +29,7 @@ if (document.getElementById('app')) {
               <Route path='detail/:id' element={<DetailBook></DetailBook>}></Route>
               <Route index element={<Home></Home>}></Route>
             </Route>
-            <Route path='/admin/*' element={<Authentization role = {1}> <Admin /></Authentization>}>
+            <Route path='/admin/*' element={<Admin />}>
               <Route index element={<UserAdmin></UserAdmin>}></Route>
               <Route path='user/*' element={<UserAdmin></UserAdmin>}></Route>
               <Route path='user/:id' element={<UserDetail></UserDetail>}></Route>
