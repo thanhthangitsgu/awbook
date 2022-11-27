@@ -2,6 +2,8 @@ const initState = {
     current: [],
     listUser: [],
     deleteOne: [],
+    updateOne: [],
+    addOne: [],
 }
 const userReducer = (state = initState, action) => {
     let temp = "";
@@ -18,6 +20,16 @@ const userReducer = (state = initState, action) => {
             temp = action.payload.res;
             return {
                 ...state, deleteOne: [temp]
+            }
+        case 'user/update':
+            temp = action.payload.res;
+            return {
+                ...state, updateOne: [temp]
+            }
+        case 'user/add':
+            temp = action.payload;
+            return {
+                ...state, addOne: [temp]
             }
         default:
             return state;

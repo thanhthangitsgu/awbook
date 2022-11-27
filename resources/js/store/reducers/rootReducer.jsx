@@ -9,6 +9,7 @@ import publisherReducer from "./publisherReducer";
 import authReducer from "./authReducer";
 import roleReducer from "./roleReducer";
 import userReducer from "./userReducer";
+import authorReducer from "./authorReducer";
 const rootReducer = combineReducers({
   category: categoryReducer,
   cart: cartReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   publisher: publisherReducer,
   auth: authReducer,
   role: roleReducer,
-  user: userReducer
+  user: userReducer,
+  author: authorReducer
 })
 export default rootReducer;

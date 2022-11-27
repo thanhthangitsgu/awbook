@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CardBook from "../CardBook";
+import CardBook from "../../components/CardBook";
 import BtnSlider from "./ControlSlide";
 export default function SliderBook({ listBook, titleSlide, item, width }) {
     const [translate, settransle] = useState(0);

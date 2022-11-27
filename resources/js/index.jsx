@@ -16,6 +16,8 @@ import Customer from './main/Customer'
 import Admin from './main/Admin'
 import UserAdmin from '../js/pages/admin/user/UserAdmin'
 import UserDetail from './pages/admin/user/UserDetail'
+import BookDetail from "./pages/admin/book/BookDetail"
+import BookTitle from './pages/admin/book/BookTitle'
 import Authentization from './Authentization'
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
@@ -31,8 +33,15 @@ if (document.getElementById('app')) {
             </Route>
             <Route path='/admin/*' element={<Admin />}>
               <Route index element={<UserAdmin></UserAdmin>}></Route>
-              <Route path='user/*' element={<UserAdmin></UserAdmin>}></Route>
-              <Route path='user/:id' element={<UserDetail></UserDetail>}></Route>
+              <Route path='nguoi-dung/' element={<UserAdmin></UserAdmin>}>
+                <Route path=':id' element={<UserDetail action="view"></UserDetail>}></Route>
+                <Route path='add/' element={<UserDetail action="add"></UserDetail>}></Route>
+              </Route>
+              <Route path='dau-sach/' element={<BookTitle></BookTitle>}>
+                <Route path=':id' element={<BookDetail action="view"></BookDetail>}></Route>
+                <Route path='add/' element={<BookDetail action="add"></BookDetail>}></Route>
+              </Route>
+              
             </Route>
           </Routes>
         </BrowserRouter>

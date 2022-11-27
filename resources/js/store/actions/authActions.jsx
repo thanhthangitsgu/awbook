@@ -1,4 +1,3 @@
-import axios from "axios"
 import axiosClient from "../api/axiousClient";
 const fetchAu = (person) => async (dispatch) => {
     const data = {

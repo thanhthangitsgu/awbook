@@ -16,9 +16,23 @@ const deleteOne = (res) => {
         payload: { res: res }
     }
 }
+const updateOne = (res) => {
+    return{
+        type: 'user/update',
+        payload: { res: res }
+    }
+}
+const addOne = (res) => {
+    return{
+        type: 'user/add',
+        pagload: {res: res}
+    }
+}
 
 export default {
     getProfle,
     getAll,
     deleteOne,
+    updateOne,
+    addOne
 }

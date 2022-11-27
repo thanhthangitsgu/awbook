@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import allActions from "../../store/actions/allActions";
 import formatCash from "../../GlobalFunction/formatCash"
 import { useState } from "react";
-import SliderBook from "../../components/Slider/SliderBook";
+import SliderBook from "../../layouts/Slider/SliderBook";
 import ButtonNumber from "../../components/ButtonNumber";
 import { ToastContainer, toast } from "react-toastify";
 import AddToCart from "../../components/AddToCart";

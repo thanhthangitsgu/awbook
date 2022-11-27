@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
-const CartBox_2 = () => {
+const CartBox = () => {
     const [isOpen, setisOpen] = useState(false);
     const cart = useSelector(state => state.cart).list;
     const wrapperRef = useRef(null);
@@ -72,4 +72,4 @@ const CartBox_2 = () => {
         </div>
     )
 }
-export default React.memo(CartBox_2)
+export default React.memo(CartBox)

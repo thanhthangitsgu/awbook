@@ -1,7 +1,7 @@
 import React from "react";
-import Slider from "../../components/Slider/Slider";
-import SliderBook from "../../components/Slider/SliderBook";
-import SliderImage from "../../components/Slider/SliderImage";
+import Slider from '../../layouts/Slider/Slider'
+import SliderBook from '../../layouts/Slider/SliderBook'
+import SliderImage from '../../layouts/Slider/SliderImage';
 import '../../../css/home.scss'
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -11,7 +11,7 @@ function Home() {
     const listPromo = useSelector(state => state.promotion).listPromo;
     const listBookTitle = useSelector(state => state.bookTitle).listBookTitle;
     const listBook = useSelector(state => state.book);
-    dispatch(allActions.detailBookActions.getListBook(listPromo, listBookTitle));
+  //  dispatch(allActions.detailBookActions.getListBook(listPromo, listBookTitle));
     return (
         <div className="body">
             <div className="content">

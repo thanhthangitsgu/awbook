@@ -1,12 +1,15 @@
 const initState = {
     position: [],
-    role: [],
+    permission: [],
     detail: [],
 }
 const roleReducer = (state = initState, action) => {
     switch (action.type) {
         case 'role/init':
-            return action.payload;
+            state.position = action.payload.role;
+            state.permission = action.payload.permission;
+            state.detail = action.payload.detail;
+            return action.payload
         default:
             return state;
     }
