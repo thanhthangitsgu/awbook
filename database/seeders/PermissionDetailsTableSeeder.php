@@ -33,7 +33,7 @@ class PermissionDetailsTableSeeder extends Seeder
                'position_id'=>'1',
             ],
             [
-               'permission_id'=>'19',
+               'permission_id'=>'10',
                'position_id'=>'1',
             ],
             [
@@ -49,10 +49,6 @@ class PermissionDetailsTableSeeder extends Seeder
                'position_id'=>'1',
             ],
             [
-               'permission_id'=>'18',
-               'position_id'=>'1',
-            ],
-            [
                'permission_id'=>'20',
                'position_id'=>'1',
             ],
@@ -61,19 +57,11 @@ class PermissionDetailsTableSeeder extends Seeder
                'position_id'=>'1',
             ],
             [
-               'permission_id'=>'24',
-               'position_id'=>'1',
-            ],
-            [
                'permission_id'=>'26',
                'position_id'=>'1',
             ],
             [
                'permission_id'=>'28',
-               'position_id'=>'1',
-            ],
-            [
-               'permission_id'=>'30',
                'position_id'=>'1',
             ],
             [
