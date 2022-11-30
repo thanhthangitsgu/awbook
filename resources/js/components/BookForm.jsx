@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import svg from "./svg";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import allAPI from "../store/api/allAPI";
+import { useNavigate } from "react-router-dom";
 const BookForm = ({ listCategory, listAuthor }) => {
     const [showEdit, setshowEdit] = useState(false);
     const [showAdd, setshowAdd] = useState(true);
@@ -11,7 +12,10 @@ const BookForm = ({ listCategory, listAuthor }) => {
     const [author, setauthor] = useState('');
     const INITAL_CATEGORY = { id: [], name: [] }
     const [category, setcategory] = useState(INITAL_CATEGORY);
+    const [newBookTitle, setnewBookTitle] = useState('');
+    const listBookTitle = useSelector(state => state.book).listBookTitle;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleOnChangeForm = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -31,9 +35,12 @@ const BookForm = ({ listCategory, listAuthor }) => {
                     temp.id = temp.id.filter(item => item != value);
                     temp.name = temp.name.filter(item => item != name);
                 }
-                setcategory({ ...category, temp });
+                setcategory({ ...category, ...temp });
         }
     }
+    useEffect(() => {
+        listBookTitle.res && setnewBookTitle(listBookTitle.res.pop());
+    }, [listBookTitle])
 
     const handleChangeType = () => {
 
@@ -41,9 +48,13 @@ const BookForm = ({ listCategory, listAuthor }) => {
     const handleOnAdd = () => {
         const data = {
             name: name,
-            author_id: author
+            author_id: author,
+            category: category
         }
         dispatch(allAPI.bookAPI.addBookTitle(data));
+        setTimeout(() => {
+            navigate('/admin/dau-sach');
+        }, 500)
     }
 
     const handleOnSubmit = () => {

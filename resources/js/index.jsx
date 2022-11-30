@@ -19,6 +19,8 @@ import UserDetail from './pages/admin/user/UserDetail'
 import BookDetail from "./pages/admin/book/BookDetail"
 import BookTitle from './pages/admin/book/BookTitle'
 import Authentization from './Authentization'
+import Author from './pages/admin/author/Author'
+import AuthorDetail from './pages/admin/author/AuthorDetail'
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -41,7 +43,10 @@ if (document.getElementById('app')) {
                 <Route path=':id' element={<BookDetail action="view"></BookDetail>}></Route>
                 <Route path='add/' element={<BookDetail action="add"></BookDetail>}></Route>
               </Route>
-              
+              <Route path='tac-gia/' element={<Author></Author>}>
+                <Route path=':id' element={<AuthorDetail action="view"></AuthorDetail>}></Route>
+                <Route path='add/' element={<AuthorDetail action="add"></AuthorDetail>}></Route>
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

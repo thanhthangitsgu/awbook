@@ -10,9 +10,9 @@ export default function Admin() {
         dispatch(allAPI.userAPI.getAll());
     }, []);
 
-    useEffect(() => {
-        dispatch(allAPI.roleAPI.roleInit())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(allAPI.roleAPI.roleInit())
+    // }, [])
 
     useEffect(() =>{
         dispatch(allAPI.userAPI.getProfile())

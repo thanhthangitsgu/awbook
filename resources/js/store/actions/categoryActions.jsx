@@ -12,6 +12,7 @@ const getListBookTitle = (res) => {
     }
 }
 const addBookTitle = (res) => {
+    console.log(res);
     return {
         type: 'category/addBookTitle',
         payload: { res: res }

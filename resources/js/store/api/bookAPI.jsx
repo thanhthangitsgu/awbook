@@ -1,4 +1,5 @@
 import adminBookActions from "../actions/adminBookActions";
+import categoryActions from "../actions/categoryActions";
 import axiosClient from "./axiousClient";
 import axios from "axios";
 const getListBookTitle = () => async (dispatch) => {
@@ -27,8 +28,19 @@ const getListBookTitle = () => async (dispatch) => {
     });
 }
 const addBookTitle = (data) => async (dispatch) => {
-    const res = await axiosClient.post('/api/book-title', data);
-    dispatch(adminBookActions.addBookTitle(res));
+    await axiosClient.post('/api/book-title', data).then((res) => {
+        const id = res.data.data.id;
+        data.category.id.map((element, index) => {
+            const data_2 = { book_id: id, cate_id: element };
+            axiosClient.post('api/category-book/', data_2).then((res2) => {
+                dispatch(adminBookActions.addBookTitle(res));
+                dispatch(categoryActions.addBookTitle(res2));
+                dispatch(getListBookTitle());
+            }).catch({
+
+            })
+        })
+    }).catch({})
 }
 const deleteBookTitle = (id) => async (dispatch) => {
     const res = await axiosClient.delete('/api/book-title/' + id);

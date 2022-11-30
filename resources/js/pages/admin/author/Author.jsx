@@ -1,68 +1,48 @@
-import React from "react";
-import { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
-import SearchBar from "../../../components/SearchBar";
+import React from "react"
+import svg from "../../../components/svg"
+import { Link, Outlet } from "react-router-dom"
+import SearchBar from "../../../components/SearchBar"
+import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
 import allAPI from "../../../store/api/allAPI"
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import svg from "../../../components/svg";
-const BookTiltle = () => {
-    const bookTitleReducer = useSelector(state => state.book);
-    let listBookTitle = bookTitleReducer.listBookTitle ? bookTitleReducer.listBookTitle.res : [];
-    const listAuthor = useSelector(state => state.author).listAuthor;
-    const category = useSelector(state => state.category).listCategory;
-    const [filter, setfilter] = useState('');
-    const [allBookTitle, setallBookTitle] = useState([]);
-    const [dataBookTitle, setdataBookTitle] = useState([]);
+import { useEffect } from "react"
+const Author = () => {
+    const authorReducer = useSelector(state => state.author);
+    const [dataAuthor, setdataAuthor] = useState('');
+    const [listAuthor, setlistAuthor] = useState('');
+    const [filter, setfilter] = useState("");
     const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(allAPI.bookAPI.getListBookTitle());
-        dispatch(allAPI.categoryAPI.getAll());
         dispatch(allAPI.authorAPI.getAll());
     }, []);
-
     useEffect(() => {
-        setdataBookTitle(listBookTitle);
-    }, [listBookTitle])
-
+        authorReducer.listAuthor.res && authorReducer.listAuthor.res.data && setlistAuthor(authorReducer.listAuthor.res.data)
+    }, [authorReducer])
     useEffect(() => {
-        setallBookTitle(dataBookTitle);
-    }, [dataBookTitle])
-
+        setdataAuthor(listAuthor);
+    }, [listAuthor])
+    useEffect(() => {
+        let data = listAuthor;
+        data = filter != "" ? data.filter(item => item.name.includes(filter)|| item.pseudonym.includes(filter)) : listAuthor;
+        setdataAuthor(data);
+    }, [filter])
     const handleOnDelete = (id) => {
-        dispatch(allAPI.bookAPI.deleteBookTitle(id));
-        setdataBookTitle(dataBookTitle.filter(item => item.id != id));
-    }
-
-    const handleOnChangeCategory = (event) => {
-        let id = parseInt(event.target.value);
-        let temp = dataBookTitle.filter(item => item.listCategory.includes(id));
-        if (id == 0) setallBookTitle(listBookTitle); else setallBookTitle(temp);
+        let data = listAuthor;
+        data = data.filter(item => item.id != id);
+        setlistAuthor(data);
+        dispatch(allAPI.authorAPI.deleteOne(id));
     }
     return (
-
         <div className="page-admin-main">
             <Outlet></Outlet>
             <div className="page-admin-content">
                 <div className="header">
-                    <div className="title">QUẢN LÝ ĐẦU SÁCH</div>
+                    <div className="title">QUẢN LÝ TÁC GIẢ</div>
                     <div className="button-add">
                         <Link to="add"><button>
                             {svg.btnAdd}
                             Thêm
                         </button></Link>
-                    </div>
-                    <div className="button-filter">
-                        <select name="" id="" onChange={() => handleOnChangeCategory(event)}>
-                            <option value="0">Thể loại</option>
-                            {category.res && category.res.data.map((element, index) => {
-                                return (
-                                    <option value={element.id}>{element.name}</option>
-                                )
-                            })}
-                        </select>
                     </div>
                     <SearchBar filter={filter} setfilter={setfilter}></SearchBar>
                 </div>
@@ -71,23 +51,25 @@ const BookTiltle = () => {
                         <thead>
                             <tr>
                                 <th className="col-first">#</th>
-                                <th >Tên đầu sách</th>
-                                <th>Tác giả</th>
-                                <th >Thể loại</th>
+                                <th>Tên tác giả</th>
+                                <th>Bút danh</th>
+                                <th>Quê quán</th>
+                                <th>Năm sinh</th>
                                 <th className="col-last">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {allBookTitle && allBookTitle.map((element, index) => {
+                            {dataAuthor.length >0 && dataAuthor.map((element, index) => {
                                 return (
                                     <tr className={index % 2 ? "row-ood" : "row-even"} key={index}>
                                         <td className="col-first">{index + 1}</td>
                                         <td>{element.name}</td>
-                                        <td>{listAuthor.res && listAuthor.res.data.filter(item => item.id == element.author_id)[0].pseudonym}</td>
-                                        <td>{element.nameCategory.join('; ')}</td>
+                                        <td>{element.pseudonym}</td>
+                                        <td>{element.native_place}</td>
+                                        <td>{element.year_of_birth}</td>
                                         <td className="col-last">
                                             <div className="action">
-                                                <Link to={'/admin/nguoi-dung/' + element.id}><button className="btn-detail" >
+                                                <Link to={'/admin/tac-gia/' + element.id}><button className="btn-detail" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-card-list" viewBox="0 0 16 16">
                                                         <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
                                                         <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
@@ -99,7 +81,6 @@ const BookTiltle = () => {
                                                     </svg>
                                                 </button>
                                             </div>
-
                                         </td>
                                     </tr>
                                 )
@@ -112,4 +93,4 @@ const BookTiltle = () => {
         </div>
     )
 }
-export default React.memo(BookTiltle);
+export default React.memo(Author)
