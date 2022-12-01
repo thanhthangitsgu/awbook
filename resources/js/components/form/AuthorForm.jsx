@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import globalFunctions from "../globalFunctions";
-import allAPI from "../store/api/allAPI";
-import svg from "./svg";
+import globalFunctions from "../../globalFunctions"
+import allAPI from "../../store/api/allAPI";
+import svg from "../svg"
 import { useNavigate } from "react-router-dom";
 const AuthorForm = ({ idAuthor, action }) => {
     const [edit, setedit] = useState(false)

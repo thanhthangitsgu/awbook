@@ -466,6 +466,7 @@ div {
     display: flex;
     gap: 0 1rem;
     button {
+        background-color: #DDDDDD;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -477,21 +478,21 @@ div {
             margin-right: 0.5rem;
         }
     }
-    .button-edit button {
+    .button-edit button:enabled {
         background-color: #82CD47;
         &:hover {
             background-color: #379237;
             color: white;
         }
     }
-    .button-delete button {
+    .button-delete button:enabled {
         background-color: #FEBE8C;
         &:hover {
             background-color: #F49D1A;
             color: white;
         }
     }
-    .button-done button {
+    .button-done button:enabled {
         background-color: #B9E0FF;
         &:hover {
             background-color: #6C4AB6;

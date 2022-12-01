@@ -1,30 +1,35 @@
 const initState = {
-    listPublisher: [],
+    listPermission: [],
+    listDetail: [],
     addOne: [],
     updateOne: [],
     deleteOne: [],
 }
-const publisherReducer = (state = initState, action) => {
+const permissionReducer = (state = initState, action) => {
     let data = action.payload;
     switch (action.type) {
-        case 'publisher/getall':
+        case 'permission/getall':
             return {
-                ...state, listPublisher: data
+                ...state, listPermission: data
             }
-        case 'publisher/addone':
+        case 'permission/addone':
             return {
                 ...state, addOne: data
             }
-        case 'publisher/updateone':
+        case 'permission/updateone':
             return {
                 ...state, updateone: data
             }
-        case 'publisher/deleteone':
+        case 'permission/deleteone':
             return {
                 ...state, deleteone: data
+            }
+        case 'permission/getlist':
+            return{
+                ...state, listPartner: data
             }
         default: return state;
 
     }
 }
-export default publisherReducer
+export default permissionReducer

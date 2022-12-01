@@ -1,19 +1,15 @@
 const initState = {
-    listCategory: [
-        { id: 1, name: "Sách thiếu nhi", describe: "", status: "", create_at: "", update_at: "" },
-        { id: 2, name: "Sách văn học", describe: "", status: "", create_at: "", update_at: "" },
-        { id: 3, name: "Sách khoa học", describe: "", status: "", create_at: "", update_at: "" },
-        { id: 4, name: "Sách giáo khoa", describe: "", status: "", create_at: "", update_at: "" },
-        { id: 5, name: "Sách Lịch sử", describe: "", status: "", create_at: "", update_at: "" }
-    ],
+    listCategory: [],
     listDetail: [],
+    updateOne: [],
+    deleteOne: [],
+    addOne: [],
     message: ''
 }
 const categoryReducer = (state = initState, action) => {
-    let data;
+    let data = action.payload
     switch (action.type) {
         case 'category/getAll':
-            data = action.payload
             return {
                 ...state, listCategory: data
             }
@@ -26,6 +22,18 @@ const categoryReducer = (state = initState, action) => {
             data = action.payload
             return {
                 ...state, message: data
+            }
+        case 'category/updateone':
+            return {
+                ...state, updateOne: data
+            }
+        case 'category/deleteOne':
+            return{
+                ...state, deleteOne: data
+            }
+        case 'category/addOne':
+            return{
+                ...state, addOne: data
             }
         default:
             return state

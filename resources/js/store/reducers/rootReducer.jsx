@@ -10,10 +10,15 @@ import authReducer from "./authReducer";
 import roleReducer from "./roleReducer";
 import userReducer from "./userReducer";
 import authorReducer from "./authorReducer";
+import positonReducer from "./positionReducer";
+import partnerReducer from "./partnerReducer";
+import permissionReducer from "./permissionReducer";
+import billReducer from "./billReducer";
+import importReducer from "./importReducer";
 const rootReducer = combineReducers({
   category: categoryReducer,
   cart: cartReducer,
-  noti: notiReducer,
+  noti: notiReducer,  
   book: bookReducer,
   bookTitle: bookTitleReducer,
   promotion: promotionReducer,
@@ -21,6 +26,12 @@ const rootReducer = combineReducers({
   auth: authReducer,
   role: roleReducer,
   user: userReducer,
-  author: authorReducer
+  author: authorReducer,
+  position: positonReducer,
+  partner: partnerReducer,
+  permission: permissionReducer,
+  bill: billReducer,
+  import: importReducer
+
 })
 export default rootReducer;

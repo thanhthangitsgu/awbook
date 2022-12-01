@@ -18,9 +18,21 @@ import UserAdmin from '../js/pages/admin/user/UserAdmin'
 import UserDetail from './pages/admin/user/UserDetail'
 import BookDetail from "./pages/admin/book/BookDetail"
 import BookTitle from './pages/admin/book/BookTitle'
-import Authentization from './Authentization'
 import Author from './pages/admin/author/Author'
 import AuthorDetail from './pages/admin/author/AuthorDetail'
+import CategoryPage from "./pages/admin/category/"
+import CategoryDetail from "./pages/admin/category/detail"
+import Publisher from './pages/admin/publisher'
+import PublisherDetail from './pages/admin/publisher/detail'
+import Position from './pages/admin/position'
+import PositionDetail from './pages/admin/position/detail'
+import Promotion from './pages/admin/promotions/'
+import PromotionDetail from "./pages/admin/promotions/detail"
+import Partner from './pages/admin/partner'
+import PartnerDetail from './pages/admin/partner/detail'
+import Permission from './pages/admin/permission'
+import PermissionDetail from './pages/admin/permission/detail'
+import Bill from "./pages/admin/bill"
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -46,6 +58,32 @@ if (document.getElementById('app')) {
               <Route path='tac-gia/' element={<Author></Author>}>
                 <Route path=':id' element={<AuthorDetail action="view"></AuthorDetail>}></Route>
                 <Route path='add/' element={<AuthorDetail action="add"></AuthorDetail>}></Route>
+              </Route>
+              <Route path='nha-xuat-ban/' element={<Publisher></Publisher>}>
+                <Route path=':id' element={<PublisherDetail action="view"></PublisherDetail>}></Route>
+                <Route path='add/' element={<PublisherDetail action="add"></PublisherDetail>}></Route>
+              </Route>
+              <Route path='the-loai/' element={<CategoryPage></CategoryPage>}>
+                <Route path=':id' element={<CategoryDetail action="view"></CategoryDetail>}></Route>
+                <Route path='add/' element={<CategoryDetail action="add"></CategoryDetail>}></Route>
+              </Route>
+              <Route path='chuc-vu/' element={<Position></Position>}>
+                <Route path=':id' element={<PositionDetail action="view"></PositionDetail>}></Route>
+                <Route path='add/' element={<PositionDetail action="add"></PositionDetail>}></Route>
+              </Route>
+              <Route path='khuyen-mai/' element={<Promotion></Promotion>}>
+                <Route path=':id' element={<PromotionDetail action="view"></PromotionDetail>}></Route>
+                <Route path='add/' element={<PromotionDetail action="add"></PromotionDetail>}></Route>
+              </Route>
+              <Route path='doi-tac/' element={<Partner></Partner>}>
+                <Route path=':id' element={<PartnerDetail action="view"></PartnerDetail>}></Route>
+                <Route path='add/' element={<PartnerDetail action="add"></PartnerDetail>}></Route>
+              </Route>
+              <Route path='quyen/' element={<Permission></Permission>}>
+                <Route path=':id' element={<PermissionDetail action="view"></PermissionDetail>}></Route>
+                <Route path='add/' element={<PermissionDetail action="add"></PermissionDetail>}></Route>
+              </Route>
+              <Route path='hoa-don/' element={<Bill></Bill>}>
               </Route>
             </Route>
           </Routes>

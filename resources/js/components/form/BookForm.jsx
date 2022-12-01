@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import svg from "./svg";
+import svg from "../../components/svg"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import allAPI from "../store/api/allAPI";
+import allAPI from "../../store/api/allAPI";
 import { useNavigate } from "react-router-dom";
 const BookForm = ({ listCategory, listAuthor }) => {
     const [showEdit, setshowEdit] = useState(false);
@@ -94,26 +94,6 @@ const BookForm = ({ listCategory, listAuthor }) => {
 
                     </div>
                 </form>
-                <div className="table-category">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th className="table-checkbox">#</th>
-                                <th>Thể loại</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {listCategory.data && listCategory.data.map((element, index) => {
-                                return (
-                                    <tr className={index % 2 ? "row-odd" : "row-even"}>
-                                        <td className="table-checkbox"><input type="checkbox" name={element.name} value={element.id} onChange={() => handleOnChangeForm(event)} /></td>
-                                        <td>{element.name}</td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
             <div className="footer-btn">

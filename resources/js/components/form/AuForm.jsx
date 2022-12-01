@@ -1,10 +1,10 @@
 import { Modal } from "react-bootstrap"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import allActions from "../store/actions/allActions";
+import allActions from "../../store/actions/allActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import allAPI from "../store/api/allAPI";
+import allAPI from "../../store/api/allAPI";
 export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm }) {
     const [openLogin, setOpenLogin] = useState(true);
     const [isLogged, setIsLogged] = useState(false);

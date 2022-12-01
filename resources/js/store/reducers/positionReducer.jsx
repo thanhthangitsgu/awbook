@@ -1,5 +1,5 @@
 const initState = {
-    listPublisher: [],
+    listPosition: [],
     addOne: [],
     updateOne: [],
     deleteOne: [],
@@ -7,19 +7,19 @@ const initState = {
 const publisherReducer = (state = initState, action) => {
     let data = action.payload;
     switch (action.type) {
-        case 'publisher/getall':
+        case 'position/getall':
             return {
-                ...state, listPublisher: data
+                ...state, listPosition: data
             }
-        case 'publisher/addone':
+        case 'position/addone':
             return {
                 ...state, addOne: data
             }
-        case 'publisher/updateone':
+        case 'position/updateone':
             return {
                 ...state, updateone: data
             }
-        case 'publisher/deleteone':
+        case 'position/deleteone':
             return {
                 ...state, deleteone: data
             }

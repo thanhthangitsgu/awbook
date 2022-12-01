@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import SelectAddress from "./SelectAddress";
-import globalFunctions from "../globalFunctions";
-import allAPI from "../store/api/allAPI";
+import SelectAddress from "../SelectAddress"
+import globalFunctions from "../../globalFunctions"
+import allAPI from "../../store/api/allAPI";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import svg from "./svg";
+import svg from "../svg";
 const UserForm = ({ idUser, action, handleOnHide }) => {
     const dataUser = useSelector(state => state.user);
     const listUser = dataUser.res ? dataUser.res.data : [];

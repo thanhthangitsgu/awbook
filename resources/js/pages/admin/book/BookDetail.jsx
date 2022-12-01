@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import BookForm from "../../../components/BookForm";
+import BookForm from "../../../components/form/BookForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import allAPI from "../../../store/api/allAPI";

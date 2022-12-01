@@ -1,24 +1,24 @@
 const getAll = (res) => {
     return {
-        type: 'publisher/getall',
+        type: 'position/getall',
         payload: res
     }
 }
 const addOne = (res) => {
     return {
-        type: 'publisher/addone',
+        type: 'position/addone',
         payload: res
     }
 }
 const updateOne = (res) => {
     return {
-        type: 'publisher/updateone',
+        type: 'position/updateone',
         payload: res
     }
 }
 const deleteOne = (res) => {
     return {
-        type: 'publisher/deleteone',
+        type: 'position/deleteone',
         payload: res
     }
 }

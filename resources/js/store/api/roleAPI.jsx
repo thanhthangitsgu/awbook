@@ -10,6 +10,7 @@ const roleInit = () => async (dispatch) => {
         dispatch(roleActions.handleInit(res1.data, res2.data, res3.data));
     }));
 }
+
 export default {
     roleInit
 }

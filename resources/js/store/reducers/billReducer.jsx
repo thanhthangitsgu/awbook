@@ -1,25 +1,25 @@
 const initState = {
-    listPublisher: [],
+    listBill: [],
     addOne: [],
     updateOne: [],
     deleteOne: [],
 }
-const publisherReducer = (state = initState, action) => {
+const billReducer = (state = initState, action) => {
     let data = action.payload;
     switch (action.type) {
-        case 'publisher/getall':
+        case 'bill/getall':
             return {
-                ...state, listPublisher: data
+                ...state, listBill: data
             }
-        case 'publisher/addone':
+        case 'bill/addone':
             return {
                 ...state, addOne: data
             }
-        case 'publisher/updateone':
+        case 'bill/updateone':
             return {
                 ...state, updateone: data
             }
-        case 'publisher/deleteone':
+        case 'bill/deleteone':
             return {
                 ...state, deleteone: data
             }
@@ -27,4 +27,4 @@ const publisherReducer = (state = initState, action) => {
 
     }
 }
-export default publisherReducer
+export default billReducer

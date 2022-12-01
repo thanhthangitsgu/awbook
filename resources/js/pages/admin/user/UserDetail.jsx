@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import UserForm from "../../../components/UserForm";
+import UserForm from "../../../components/form/UserForm";
 const UserDetail = (action) => {
     const param = useParams();
     const navigate = useNavigate();
