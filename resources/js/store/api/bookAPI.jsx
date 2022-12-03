@@ -1,6 +1,7 @@
 import adminBookActions from "../actions/adminBookActions";
 import categoryActions from "../actions/categoryActions";
 import axiosClient from "./axiousClient";
+import bookActions from "../actions/bookActions";
 import axios from "axios";
 const getListBookTitle = () => async (dispatch) => {
     const bookTitle = axiosClient.get('/api/book-title');
@@ -46,8 +47,39 @@ const deleteBookTitle = (id) => async (dispatch) => {
     const res = await axiosClient.delete('/api/book-title/' + id);
     dispatch(adminBookActions.deleteBookTitle(res));
 }
+
+const getAll = () => async (dispatch) => {
+    await axiosClient.get('api/book').then((response) => {
+        dispatch(bookActions.getAll(response));
+    })
+}
+const addOne = (data) => async (dispatch) => {
+    console.log("data", data)
+    await axiosClient.post('api/book', data).then((response) => {
+        dispatch(bookActions.addOne(response));
+        dispatch(getAll());
+    })
+}
+const updateOne = (id, data) => async (dispatch) => {
+    await axiosClient.put('api/book/' + id, data).then((response) => {
+        dispatch(bookActions.updateOne(response));
+        dispatch(getAll());
+    })
+}
+const deleteOne = (id) => async (dispatch) => {
+    await axiosClient.delete('api/book/' + id).then((response) => {
+        dispatch(bookActions.deleteOne(response));
+        dispatch(getAll());
+    })
+}
+
+
 export default {
     getListBookTitle,
     addBookTitle,
-    deleteBookTitle
+    deleteBookTitle,
+    getAll,
+    addOne,
+    updateOne,
+    deleteOne
 }

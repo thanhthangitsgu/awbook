@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import PromotionForm from "../../../components/form/PromotionForm";
+import PositionForm from "../../../components/form/PositionForm";
 const PositionDetail = ({ action }) => {
     const [showmodal, setshowmodal] = useState(true);
     const param = useParams();

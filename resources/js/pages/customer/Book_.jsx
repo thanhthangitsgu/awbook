@@ -2,8 +2,8 @@ import React from "react";
 import { Link, Outlet, Route, Routes, } from "react-router-dom";
 import BookActions from "../../store/actions/bookActions";
 import { connect } from "react-redux";
-import ListCategory from "../../components/ListCategory";
-import ListBook from "../../components/ListBook";
+import ListCategory from "../../components/ListCategoryClass";
+import ListBook from "../../components/customer/book/ListBook";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 class Book extends React.Component {
@@ -16,18 +16,6 @@ class Book extends React.Component {
     }
 
     render() {
-        const showToast = (message) => {
-            toast.success(message, {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }
         const handleChangeCategory = (id, name) => {
             this.setState({
                 category: { id: id, name: name }
@@ -65,19 +53,7 @@ class Book extends React.Component {
         this.props.initBook(this.props.listPromo, this.props.listBookTitle);
         return (
             <>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-
-                />
+               
                 <div className="page-book">
                     <div className="page-book-directory">Home &gt; Book &gt; {this.state.category.name}</div>
                     <div className="page-book-body">

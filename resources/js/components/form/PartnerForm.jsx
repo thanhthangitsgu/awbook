@@ -14,7 +14,6 @@ const PartnerForm = ({ id, action }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const partnerReducer = useSelector(state => state.partner).listPartner;
-    const prm = useSelector(state => state.partner);
     const [partner, setpartner] = useState("");
     const INITIAL_FORM = {
         name: "",
@@ -93,9 +92,6 @@ const PartnerForm = ({ id, action }) => {
     const handleRefresh = () => {
         setdataForm(partner);
     }
-    useEffect(() => {
-        console.log(dataForm);
-    }, [dataForm]);
     return (
         <>
             <form action="" className="edit-form">

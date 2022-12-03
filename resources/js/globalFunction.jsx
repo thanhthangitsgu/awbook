@@ -20,7 +20,10 @@ const removeVietnameseTones = (str) => {
     str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, " ");
     str = str.trim();
     str = str.toLowerCase();
-    str = str.replace(/ /g, "-");
+    let arr = str.split(" ");
+    arr = arr.filter(item => item != "");
+    str = arr.join("-")
+    console.log(str);
     return str;
 }
 export default removeVietnameseTones;

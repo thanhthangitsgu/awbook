@@ -1,10 +1,27 @@
-const BookActions = (dispatch) => {
+const getAll = (res) => {
     return {
-        initBook: (listPromo, listBookTitle) =>
-            dispatch({
-                type: 'book/init',
-                payload: { listPromo: listPromo, listBookTitle: listBookTitle }
-            }),
+        type: 'book/getall',
+        payload: res
     }
 }
-export default BookActions
+const addOne = (res) => {
+    return {
+        type: 'book/addone',
+        payload: res
+    }
+}
+const updateOne = (res) => {
+    return {
+        type: 'book/updateone',
+        payload: res
+    }
+}
+const deleteOne = (res) => {
+    return {
+        type: 'book/deleteone',
+        payload: res
+    }
+}
+export default {
+    getAll, addOne, updateOne, deleteOne
+}

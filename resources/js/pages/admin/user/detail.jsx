@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import UserForm from "../../../components/form/UserForm";
-const UserDetail = (action) => {
+const UserDetail = ({ action }) => {
     const param = useParams();
     const navigate = useNavigate();
     const [showmodal, setshowmodal] = useState(true);
@@ -21,7 +21,7 @@ const UserDetail = (action) => {
                 <div className="title">THÔNG TIN NGƯỜI DÙNG</div>
             </Modal.Header>
             <Modal.Body>
-                <UserForm idUser={param.id} action={action} handleOnHide = {handleOnHide}></UserForm>
+                <UserForm id={param.id} action={action} handleOnHide={handleOnHide}></UserForm>
             </Modal.Body>
         </Modal>
     )

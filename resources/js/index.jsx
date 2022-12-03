@@ -9,15 +9,14 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import store from './store/store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Book from './pages/customer/Book'
+import BookPageCustomer from './pages/customer/book/index'
 import Home from './pages/customer/Home'
 import DetailBook from './pages/customer/DetailBook'
 import Customer from './main/Customer'
 import Admin from './main/Admin'
-import UserAdmin from '../js/pages/admin/user/UserAdmin'
-import UserDetail from './pages/admin/user/UserDetail'
-import BookDetail from "./pages/admin/book/BookDetail"
-import BookTitle from './pages/admin/book/BookTitle'
+import UserDetail from './pages/admin/user/detail'
+import BookDetail from "./pages/admin/bookTitle/BookDetail"
+import BookTitle from './pages/admin/bookTitle/'
 import Author from './pages/admin/author/Author'
 import AuthorDetail from './pages/admin/author/AuthorDetail'
 import CategoryPage from "./pages/admin/category/"
@@ -33,6 +32,9 @@ import PartnerDetail from './pages/admin/partner/detail'
 import Permission from './pages/admin/permission'
 import PermissionDetail from './pages/admin/permission/detail'
 import Bill from "./pages/admin/bill"
+import Import from './pages/admin/import'
+import BookAdmin from "./pages/admin/book/index";
+import User from "./pages/admin/user"
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -41,13 +43,13 @@ if (document.getElementById('app')) {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Customer />}>
-              <Route path='book/*' element={<Book></Book>}></Route>
+              <Route path='book/*' element={<BookPageCustomer></BookPageCustomer>}></Route>
               <Route path='detail/:id' element={<DetailBook></DetailBook>}></Route>
               <Route index element={<Home></Home>}></Route>
             </Route>
             <Route path='/admin/*' element={<Admin />}>
-              <Route index element={<UserAdmin></UserAdmin>}></Route>
-              <Route path='nguoi-dung/' element={<UserAdmin></UserAdmin>}>
+              <Route index element={<User></User>}></Route>
+              <Route path='nguoi-dung/' element={<User></User>}>
                 <Route path=':id' element={<UserDetail action="view"></UserDetail>}></Route>
                 <Route path='add/' element={<UserDetail action="add"></UserDetail>}></Route>
               </Route>
@@ -84,6 +86,10 @@ if (document.getElementById('app')) {
                 <Route path='add/' element={<PermissionDetail action="add"></PermissionDetail>}></Route>
               </Route>
               <Route path='hoa-don/' element={<Bill></Bill>}>
+              </Route>
+              <Route path='phieu-nhap/' element={<Import></Import>}>
+              </Route>
+              <Route path='sach/' element={<BookAdmin></BookAdmin>}>
               </Route>
             </Route>
           </Routes>

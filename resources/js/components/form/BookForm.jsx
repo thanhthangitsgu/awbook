@@ -39,7 +39,7 @@ const BookForm = ({ listCategory, listAuthor }) => {
         }
     }
     useEffect(() => {
-        listBookTitle.res && setnewBookTitle(listBookTitle.res.pop());
+        listBookTitle && setnewBookTitle(listBookTitle.pop());
     }, [listBookTitle])
 
     const handleChangeType = () => {
@@ -89,13 +89,12 @@ const BookForm = ({ listCategory, listAuthor }) => {
                     <div className="edit-row-item">
                         <div className="edit-label-form">Thể loại: </div>
                         <div className="edit-input-form">
-                            <div className="edit-long">{category.name && category.name.join('; ')}</div>
+                            {/* <div className="edit-long">{category.name && category.name.join('; ')}</div> */}
                         </div>
 
                     </div>
                 </form>
             </div>
-
             <div className="footer-btn">
                 <div className="button-delete">
                     {!showAdd && (showEdit ? (<button onClick={() => handleChangeType()}> {svg.btnClose} Hủy </button>) : (<button> {svg.btnDelete} Xóa </button>))}

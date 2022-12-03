@@ -10,6 +10,7 @@ import partnerAPI from "./partnerAPI";
 import permissionAPI from "./permissionAPI";
 import billAPI from "./billAPI";
 import importAPI from "./importAPI";
+import titleAPI from "./titleAPI";
 const allAPI = {
     roleAPI,
     userAPI,
@@ -20,9 +21,9 @@ const allAPI = {
     positionAPI,
     promotionAPI,
     partnerAPI,
-    permissionAPI, 
+    permissionAPI,
     billAPI,
-    importAPI
-    
+    importAPI,
+    titleAPI
 }
 export default allAPI;

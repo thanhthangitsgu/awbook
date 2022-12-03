@@ -1,38 +1,35 @@
 const initState = {
     current: [],
     listUser: [],
-    deleteOne: [],
-    updateOne: [],
     addOne: [],
+    updateOne: [],
+    deleteOne: [],
 }
 const userReducer = (state = initState, action) => {
-    let temp = "";
+    let data = action.payload;
     switch (action.type) {
         case 'user/getprofile':
-            temp = action.payload.res;
             return {
-                ...state, current: [temp.data]
+                ...state, current: data
             }
         case 'user/getall':
-            state = action.payload;
-            return state
-        case 'user/delete':
-            temp = action.payload.res;
             return {
-                ...state, deleteOne: [temp]
+                ...state, listUser: data
             }
-        case 'user/update':
-            temp = action.payload.res;
+        case 'user/addone':
             return {
-                ...state, updateOne: [temp]
+                ...state, addOne: data
             }
-        case 'user/add':
-            temp = action.payload;
+        case 'user/updateone':
             return {
-                ...state, addOne: [temp]
+                ...state, updateone: data
             }
-        default:
-            return state;
+        case 'user/deleteone':
+            return {
+                ...state, deleteone: data
+            }
+        default: return state;
+
     }
 }
 export default userReducer

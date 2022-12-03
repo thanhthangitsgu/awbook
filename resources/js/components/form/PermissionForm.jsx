@@ -14,7 +14,6 @@ const PermissionForm = ({ id, action }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const permissionReducer = useSelector(state => state.permission).listPermission;
-    const prm = useSelector(state => state.permission);
     const [permission, setpermission] = useState("");
     const INITIAL_FORM = {
         name: "",

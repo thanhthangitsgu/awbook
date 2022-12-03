@@ -1,38 +1,33 @@
-const getProfle = (res) => {
+const getProfile = (res) => {
     return {
         type: 'user/getprofile',
-        payload: { res: res }
+        payload: res
     }
 }
 const getAll = (res) => {
     return {
         type: 'user/getall',
-        payload: { res: res }
+        payload: res
+    }
+}
+const addOne = (res) => {
+    return {
+        type: 'user/addone',
+        payload: res
+    }
+}
+const updateOne = (res) => {
+    return {
+        type: 'user/updateone',
+        payload: res
     }
 }
 const deleteOne = (res) => {
     return {
-        type: 'user/delete',
-        payload: { res: res }
+        type: 'user/deleteone',
+        payload: res
     }
 }
-const updateOne = (res) => {
-    return{
-        type: 'user/update',
-        payload: { res: res }
-    }
-}
-const addOne = (res) => {
-    return{
-        type: 'user/add',
-        pagload: {res: res}
-    }
-}
-
 export default {
-    getProfle,
-    getAll,
-    deleteOne,
-    updateOne,
-    addOne
+    getAll, addOne, updateOne, deleteOne, getProfile
 }

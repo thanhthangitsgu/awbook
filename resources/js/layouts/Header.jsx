@@ -21,7 +21,7 @@ class Header extends React.Component {
           <div className="header-content">
             <SearchBar></SearchBar>
             <div className="header-option">
-              <CategoryBox></CategoryBox>
+              {/* <CategoryBox></CategoryBox> */}
               <NotiBox></NotiBox>
               <div className="cart-box"><CartBox></CartBox></div>
               <div className="user-box"><UserBox handleShowAuForm={handleShowAuForm}></UserBox></div>

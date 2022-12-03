@@ -1,98 +1,139 @@
-import React from "react";
+import React from "react"
 import { useSelector } from "react-redux";
-import { useState } from "react";
-import SelectAddress from "../SelectAddress"
-import globalFunctions from "../../globalFunctions"
-import allAPI from "../../store/api/allAPI";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 import svg from "../svg";
-const UserForm = ({ idUser, action, handleOnHide }) => {
-    const dataUser = useSelector(state => state.user);
-    const listUser = dataUser.res ? dataUser.res.data : [];
+import allAPI from "../../store/api/allAPI";
+import globalFunctions from "../../globalFunctions";
+import SelectAddress from "../SelectAddress";
+const UserForm = ({ id, action }) => {
+    //Khai báo các biến
+    const [edit, setedit] = useState(false)
+    const [add, setadd] = useState((action + "") == 'add');
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [user, setuser] = useState('');
-    const [showEdit, setshowedit] = useState(false);
-    const [showAdd, setshowadd] = useState(action.action == "add");
-    const INITIAL_ADDRESS = { village: '', provide: '', district: '', ward: '' }
-    const [address, setaddress] = useState(INITIAL_ADDRESS);
+    const userReducer = useSelector(state => state.user).listUser;
+    const positionReducer = useSelector(state => state.position).listPosition;
+    const [listPosotion, setlistPosotion] = useState("");
+    const [user, setuser] = useState("");
     const INITIAL_FORM = {
-        fullname: '', gender: '', birthday: '', phone: '', email: '', address: address,
-        validFullName: false, validGender: true, validBirthday: true, validPhone: false, validEmail: false, validAddress: false,
+        fullname: "",
+        gender: '',
+        date_of_birth: '',
+        position_id: '',
+        address: {
+            village: '',
+            ward: '',
+            district: '',
+            provide: '',
+        },
+        phone: '',
+        email: '',
+    }
+    const INITIAL_VALID = {
+        fullname: false,
+        gender: false,
+        date_of_birth: false,
+        position_id: false,
+        address: false,
+        phone: false,
+        email: false,
     }
     const [dataForm, setdataForm] = useState(INITIAL_FORM);
-    const role = useSelector(state => state.role);
-
-    const updateDataForm = () => {
-        let temp = user.surname ? {
-            fullname: user.surname + " " + user.name, gender: user.gender, birthday: user.date_of_birth, phone: user.phone, email: user.email, address: address,
-            validFullName: true, validGender: true, validBirthday: true, validPhone: true, validEmail: true, validAddress: true,
-        } : { INITIAL_FORM }
-        user.surname && setdataForm({ ...dataForm, ...temp });
-    }
-
-    const updateUser = () => {
-        let temp = listUser.data && listUser.data.filter(item => item.id == idUser)[0];
-        temp = temp ? temp : [];
-        let temp_ = temp.surname ? temp.address : "";
-        let arr = temp_ == "" ? "" : temp_.split(',');
-        arr != "" && setaddress({
-            village: arr[0],
-            provide: arr[3],
-            district: arr[2],
-            ward: arr[1]
-        })
-        setuser(temp);
-    }
-    useEffect(() => {
-        updateUser();
-    }, [dataUser]);
+    const [validData, setvalidata] = useState(INITIAL_VALID);
+    const [validated, setvalidated] = useState(false);
 
     useEffect(() => {
-        updateDataForm();
+        positionReducer.data && positionReducer.data.status && setlistPosotion(positionReducer.data.data);
+    }, [positionReducer]);
+
+    //Load dữ liệu biến nhớ
+    useEffect(() => {
+        let data = userReducer.data && userReducer.data.data ? userReducer.data.data : [];
+        data = data == [] ? INITIAL_FORM : data.filter(item => item.id == id)[0];
+        data && setuser(data);
+    }, [userReducer]);
+    //Load dữ liệu vào form
+    useEffect(() => {
+        let address = user && user.address ? user.address.split(',') : {
+            village: " ",
+            ward: " ",
+            district: " ",
+            provide: " ",
+        }
+        !add && setdataForm({
+            fullname: user.surname + " " + user.name,
+            gender: user.gender,
+            date_of_birth: user.date_of_birth,
+            position_id: user.position_id,
+            address: {
+                village: address[0],
+                ward: address[1],
+                district: address[2],
+                provide: address[3],
+            },
+            phone: user.phone,
+            email: user.email,
+        });
     }, [user])
-    
+    //validate
+    useEffect(() => {
+        let data = {
+            fullname: globalFunctions.validFullName(dataForm.fullname),
+            gender: globalFunctions.validNotEmpty(dataForm.gender),
+            date_of_birth: true,
+            position_id: true,
+            address: globalFunctions.validNotEmpty(dataForm.address.village) && globalFunctions.validNotEmpty(dataForm.address.district) && globalFunctions.validNotEmpty(dataForm.address.ward) && globalFunctions.validNotEmpty(dataForm.address.provide),
+            phone: globalFunctions.validPhone(dataForm.phone),
+            email: globalFunctions.validEmail(dataForm.email),
+        }
+        setvalidata(data);
+    }, [dataForm])
+
+    useEffect(() => {
+        let temp = true;
+        Object.values(validData).forEach(value => {
+            if (!value) {
+                temp = false;
+                return;
+            }
+        })
+        setvalidated(temp);
+    }, [validData])
+
+    //Khai báo các hàm
     const handleOnChangeForm = (event) => {
         let name = event.target.name;
-        let val = event.target.value;
-        let check = true;
-        switch (name) {
-            case 'fullname':
-                check = globalFunctions.validFullName(val);
-                setdataForm({ ...dataForm, fullname: val, validFullName: check });
-                break
-            case 'phone':
-                check = globalFunctions.validPhone(val);
-                setdataForm({ ...dataForm, [name]: val, validPhone: check });
-                break
-            case 'email':
-                check = globalFunctions.validEmail(val);
-                setdataForm({ ...dataForm, [name]: val, validEmail: check });
-                break
-            case 'address':
-                check = val != '';
-                let temp = { ...address, village: val }
-                setdataForm({ ...dataForm, address: temp, validAddress: check });
-                break
-            default: setdataForm({ ...dataForm, [name]: val });
-        }
-    }
-    const handleOnChageGender = (event) => {
-        (showEdit || showAdd) && (setdataForm({ ...dataForm, gender: event.target.innerText }))
+        let value = event.target.value;
+        if (name != "address") setdataForm({ ...dataForm, [name]: value });
+        else setdataForm({ ...dataForm, address: { ...dataForm.address, village: value } })
     }
     const handleChangeType = () => {
-        setshowedit(!showEdit);
+        setedit(!edit);
     }
-    const handleOnSubmit = () => {
-        setshowedit(!showEdit);
-        dispatch(allAPI.userAPI.updateOne(idUser, dataForm));
-        dispatch(allAPI.userAPI.getAll());
+    const handleOnChageGender = (event) => {
+        (edit || add) && (setdataForm({ ...dataForm, gender: event.target.innerText }))
     }
-    const handleOnAdd = () =>{
+    const handleDelete = (id) => {
+        dispatch(allAPI.userAPI.deleteOne(id));
+        setTimeout(() => {
+            navigate('/admin/nguoi-dung');
+        }, 300)
+    }
+    const handleAdd = () => {
         dispatch(allAPI.userAPI.addOne(dataForm));
-        dispatch(allAPI.userAPI.getAll());
-        handleOnHide();
-        
+        setTimeout(() => {
+            navigate('/admin/nguoi-dung');
+        }, 300)
+    }
+    const handleUpdate = () => {
+        dispatch(allAPI.userAPI.updateOne(id, dataForm));
+        setedit(!edit);
+    }
+    const handleRefresh = () => {
+        setdataForm(user);
     }
     return (
         <>
@@ -100,59 +141,74 @@ const UserForm = ({ idUser, action, handleOnHide }) => {
                 <div className="edit-row-item">
                     <div className="edit-label-form">Họ và tên: </div>
                     <div className="edit-input-form">
-                        <input type="text" name="fullname" value={dataForm.fullname} onChange={() => handleOnChangeForm(event)} disabled={!showEdit && !showAdd} />
+                        <input type="text" name="fullname" value={dataForm.fullname} onChange={() => handleOnChangeForm(event)} disabled={!edit && !add} />
                     </div>
-                    {(showEdit || showAdd) && (dataForm.validFullName ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                    {(edit || add) && (validData.fullname ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
                 </div>
                 <div className="edit-row-item">
                     <div className="edit-label-form">Số điện thoại: </div>
                     <div className="edit-input-form">
-                        <input type="text" name="phone" value={dataForm.phone} onChange={() => handleOnChangeForm(event)} disabled={!showEdit && !showAdd} />
+                        <input type="text" name="phone" value={dataForm.phone} onChange={() => handleOnChangeForm(event)} disabled={!edit && !add} />
                     </div>
-                    {(showEdit || showAdd) && (dataForm.validPhone ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                    {(edit || add) && (validData.phone ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
                 </div>
                 <div className="edit-row-item">
                     <div className="edit-label-form">Địa chỉ email: </div>
                     <div className="edit-input-form">
-                        <input type="text" name="email" value={dataForm.email} onChange={() => handleOnChangeForm(event)} disabled={!showEdit && !showAdd} />
+                        <input type="text" name="email" value={dataForm.email} onChange={() => handleOnChangeForm(event)} disabled={!edit && !add} />
                     </div>
-                    {(showEdit || showAdd) && (dataForm.validEmail ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                    {(edit || add) && (validData.email ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
                 </div>
                 <div className="edit-row-item">
                     <div className="edit-label-form">Ngày sinh: </div>
                     <div className="edit-input-form">
-                        <input type="date" name="birthday" value={dataForm.birthday} onChange={() => handleOnChangeForm(event)} disabled={!showEdit && !showAdd} />
+                        <input type="date" name="date_of_birth" value={dataForm.date_of_birth} onChange={() => handleOnChangeForm(event)} disabled={!edit && !add} />
                     </div>
-                    {(showEdit || showAdd) && (dataForm.validBirthday ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                    {(edit || add) && (validData.date_of_birth ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
                 </div>
                 <div className="edit-row-item">
                     <div className="edit-label-form">Giới tính: </div>
                     <div className="edit-input-form">
-                        <div className={showEdit || showAdd ? "edit-gender-form" : "show-gender-form"}><span className={dataForm.gender == "Nam" ? "" : "not-select"} onClick={() => handleOnChageGender(event)}>Nam</span>/<span className={dataForm.gender == "Nữ" ? "" : "not-select"} onClick={() => handleOnChageGender(event)}>Nữ</span></div>
+                        <div className={edit || add ? "edit-gender-form" : "show-gender-form"}><span className={dataForm.gender == "Nam" ? "" : "not-select"} onClick={() => handleOnChageGender(event)}>Nam</span>/<span className={dataForm.gender == "Nữ" ? "" : "not-select"} onClick={() => handleOnChageGender(event)}>Nữ</span></div>
                     </div>
-                    {(showEdit || showAdd) && (dataForm.validBirthday ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                    {(edit || add) && (validData.gender ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                </div>
+                <div className="edit-row-item">
+                    <div className="edit-label-form">Vai trò: </div>
+                    <div className="edit-select-form" style={{ width: "24rem", marginLeft: "0" }}>
+                        <select name="position_id" id="" onChange={() => handleOnChangeForm(event)} disabled={!edit && !add}>
+                            {listPosotion && listPosotion.map((element, index) => {
+                                return (
+                                    <option value={element.id}>{element.name}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    {(edit || add) && (validData.position_id ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
                 </div>
                 <div className="edit-row-item">
                     <div className="edit-label-form">Địa chỉ: </div>
                     <div className="edit-input-form">
-                        <input type="text" name="address" value={dataForm.address.village} onChange={() => handleOnChangeForm(event)} disabled={!showEdit && !showAdd} />
+                        <input type="text" name="address" value={dataForm.address.village} onChange={() => handleOnChangeForm(event)} disabled={!edit && !add} />
                     </div>
-                    {(showEdit || showAdd) && (dataForm.validAddress ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                    {(edit || add) && (validData.address ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
                 </div>
+
                 <div className="edit-select-form">
-                    <SelectAddress showEdit={showEdit} dataForm={dataForm} setdataForm={setdataForm} showAdd={showAdd}></SelectAddress>
+                    <SelectAddress showEdit={edit} dataForm={dataForm} setdataForm={setdataForm} showAdd={add}></SelectAddress>
                 </div>
+
             </form>
             <div className="footer-btn">
                 <div className="button-delete">
-                    {!showAdd && (showEdit ? (<button onClick={() => handleChangeType()}> {svg.btnClose} Hủy </button>) : (<button> {svg.btnDelete} Xóa </button>))}
+                    {!add && (edit ? (<button onClick={() => handleChangeType()}> {svg.btnClose} Hủy </button>) : (<button> {svg.btnDelete} Xóa </button>))}
                 </div>
                 <div className="button-done">
-                    {showAdd ? (<button onClick={() => handleOnAdd()}>{svg.btnDone} Xác nhận </button>) : showEdit ? (<button onClick={() => handleOnSubmit()}>{svg.btnDone} Xác nhận </button>) : (<button onClick={() => handleChangeType()}>{svg.btnEdit} Chỉnh sửa </button>)}
+                    {add ? (<button onClick={() => handleAdd()} disabled={!validated}>{svg.btnDone} Xác nhận </button>) : edit ? (<button onClick={() => handleUpdate()} disabled={!validated}>{svg.btnDone} Xác nhận </button>) : (<button onClick={() => handleChangeType()}>{svg.btnEdit} Chỉnh sửa </button>)}
                 </div>
-                {(showEdit || showAdd) && (
-                    <div className="button-edit" onClick={() => updateDataForm()}>
-                        <button> {svg.btnRefresh} Khôi phục</button>
+                {(edit || add) && (
+                    <div className="button-edit" onClick={() => handleRefresh()}>
+                        <button disabled={!validated}> {svg.btnRefresh} Khôi phục</button>
                     </div>)}
             </div>
         </>

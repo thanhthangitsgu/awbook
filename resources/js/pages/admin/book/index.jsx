@@ -7,36 +7,36 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import allAPI from "../../../store/api/allAPI";
-const ImportPage = () => {
+const BookPage = () => {
     const [filter, setfilter] = useState("");
     const dispatch = useDispatch();
-    const importReducer = useSelector(state => state.import).listImport;
-    const [listImport, setlistImport] = useState("");
-    const [dataImport, setdataImport] = useState("");
+    const bookReducer = useSelector(state => state.book).listBook;
+    const [listBook, setlistBook] = useState("");
+    const [dataBook, setdataBook] = useState("");
     //Gọi API lấy  danh sách
     useEffect(() => {
-        dispatch(allAPI.importAPI.getAll());
+        dispatch(allAPI.bookAPI.getAll());
     }, []);
 
     //Lấy danh sách vào list
     useEffect(() => {
-        importReducer.data && importReducer.data.data && setlistImport(importReducer.data.data);
-    }, [importReducer])
+        bookReducer.data && bookReducer.data.data && setlistBook(bookReducer.data.data);
+    }, [bookReducer])
 
     //Lấy danh sách từ list vào data
     useEffect(() => {
-        setdataImport(listImport);
-    }, [listImport]);
+        setdataBook(listBook);
+    }, [listBook]);
 
     //Xử lí lọc
     useEffect(() => {
-        let data = listImport;
-        data = filter != "" ? data.filter(item => item.name.includes(filter)) : listImport;
-        setdataImport(data);
+        let data = listBook;
+        data = filter != "" ? data.filter(item => item.name.includes(filter)) : listBook;
+        setdataBook(data);
     }, [filter])
 
     const handleDelete = (id) => {
-        dispatch(allAPI.importAPI.deleteOne(id));
+        dispatch(allAPI.bookAPI.deleteOne(id));
     }
 
     return (
@@ -44,7 +44,7 @@ const ImportPage = () => {
             <Outlet></Outlet>
             <div className="page-admin-content">
                 <div className="header">
-                    <div className="title">QUẢN LÝ HÓA ĐƠN</div>
+                    <div className="title">QUẢN LÝ SÁCH</div>
                     <div className="button-add">
                         <Link to="add"><button>{svg.btnAdd} Thêm</button></Link>
                     </div>
@@ -61,20 +61,24 @@ const ImportPage = () => {
                         <thead>
                             <tr>
                                 <th className="col-first">#</th>
-                                <th>Nhân viên</th>
-                                <th>Nhà cung cấp</th>
-                                <th>Tổng tiền</th>
+                                <th>Bìa</th>
+                                <th>Tên</th>
+                                <th>NXB</th>
+                                <th>Năm xuất bản</th>
+                                <th>Giá</th>
                                 <th className="col-last">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {dataImport.length > 0 && dataImport.map((element, index) => {
+                            {dataBook.length > 0 && dataBook.map((element, index) => {
                                 return (
                                     <tr className={index % 2 ? "row-ood" : "row-even"} key={index}>
                                         <td className="col-first">{element.id}</td>
-                                        <td>{element.staff_id}</td>
-                                        <td>{element.partner_id}</td>
-                                        <td>{element.total_cost}</td>
+                                        <td><div className="td-img"><img src={'http://127.0.0.1:5173/public/' + element.image} alt="" /></div></td>
+                                        <td>{element.title_id}</td>
+                                        <td>{element.pub_id}</td>
+                                        <td>{element.year}</td>
+                                        <td>{element.price}</td>
                                         <td className="col-last">
                                             <div className="action">
                                                 <Link to={'/admin/hoa-dpn/' + element.id}><button className="btn-detail" >
@@ -101,4 +105,4 @@ const ImportPage = () => {
         </div>
     )
 }
-export default React.memo(ImportPage)
+export default React.memo(BookPage)
