@@ -17,6 +17,7 @@ const initState = {
     addOne: [],
     updateOne: [],
     deleteOne: [],
+    getOne: [],
 }
 const bookReducer = (state = initState, action) => {
     let data = action.payload;
@@ -31,11 +32,15 @@ const bookReducer = (state = initState, action) => {
             }
         case 'book/updateone':
             return {
-                ...state, updateone: data
+                ...state, updateOne: data
             }
         case 'book/deleteone':
             return {
-                ...state, deleteone: data
+                ...state, deleteOne: data
+            }
+        case 'book/getone':
+            return {
+                ...state, getOne: data
             }
         default: return state;
 

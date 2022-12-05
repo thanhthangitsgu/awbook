@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import allActions from "../store/actions/allActions";
-export default function AddToCart({book, style, action}){
+export default function AddToCart({ book, style }) {
     const dispatch = useDispatch();
-    const handleOnClick = () =>{
-        dispatch(allActions.detailBookActions.addCart(book));
+    const handleOnClick = () => {
+        dispatch(allActions.cartActions.addCart(book));
     }
-    return(
+    return (
         <button className={style} onClick={() => handleOnClick()}>THÊM VÀO GIỎ HÀNG</button>
     )
-}
+}   

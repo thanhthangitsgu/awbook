@@ -1,33 +1,27 @@
 const getAll = (res) => {
     return {
-        type: 'book/getall',
+        type: 'method/getall',
         payload: res
     }
 }
 const addOne = (res) => {
     return {
-        type: 'book/addone',
+        type: 'method/addone',
         payload: res
     }
 }
 const updateOne = (res) => {
     return {
-        type: 'book/updateone',
+        type: 'method/updateone',
         payload: res
     }
 }
 const deleteOne = (res) => {
     return {
-        type: 'book/deleteone',
-        payload: res
-    }
-}
-const getOne = (res) => {
-    return {
-        type: 'book/getone',
+        type: 'method/deleteone',
         payload: res
     }
 }
 export default {
-    getAll, addOne, updateOne, deleteOne, getOne
+    getAll, addOne, updateOne, deleteOne
 }

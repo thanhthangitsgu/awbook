@@ -35,5 +35,11 @@ Route::get('/book/{id}', function(){
 Route::get('/detail/{id}', function(){
     return view('index');
 });
+Route::get('/cart', function(){
+    return view('index');
+});
+Route::get('/payment', function(){
+    return view('index');
+});
 
 

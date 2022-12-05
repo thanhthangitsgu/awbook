@@ -3,6 +3,7 @@ const initState = {
     updateOne: [],
     addOne: [],
     deleteOne: [],
+    getOne: [],
 }
 const authorReducer = (state = initState, action) => {
     let data;
@@ -19,6 +20,9 @@ const authorReducer = (state = initState, action) => {
         case 'author/deleteone':
             data = action.payload;
             return {...state, deleteOne: data};
+        case 'author/getone':
+            data = action.payload;
+            return {...state, getOne: data};
         default:
             return state
     }

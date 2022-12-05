@@ -27,6 +27,13 @@ const deleteOne = (id) => async (dispatch) => {
 
     })
 }
+const getOne = (id) => async (dispatch) => {
+    await axiosClient.get('api/author/' + id).then((res) => {
+        dispatch(authorActions.getOne(res));
+    }).catch({
+
+    })
+}
 export default {
-    getAll, updateOne, addOne, deleteOne
+    getAll, updateOne, addOne, deleteOne, getOne
 }

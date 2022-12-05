@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CardBook from "../../components/CardBook";
 import BtnSlider from "./ControlSlide";
+import { Link } from "react-router-dom";
 export default function SliderBook({ listBook, titleSlide, item, width }) {
     const [translate, settransle] = useState(0);
     const itemPerSlide = item
@@ -35,7 +36,7 @@ export default function SliderBook({ listBook, titleSlide, item, width }) {
                 </div>
             </div>
             <div className="btn-view">
-                <button>Xem Thêm</button>
+                <Link to="/book"><button>Xem Thêm</button></Link>
             </div>
         </div>
     )

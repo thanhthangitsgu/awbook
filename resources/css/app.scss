@@ -53,29 +53,34 @@ $frameColor: #fd841f;
 
 .header-main {
     width: 100%;
-    @include center-element();
+    align-items: center;
     background-color: $frameColor;
     border-bottom: 1px solid rgb(240, 240, 240);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     display: flex;
+    position: relative;
     .header-logo {
-        width: 20%;
-        margin: 0;
+        width: 13rem;
         font-size: 2.5rem;
-        font-family: 'Pacifico', cursive;
+        font-family: serif;
         text-align: center;
         color: white;
         border-right: 1px solid rgb(240, 240, 240);
     }
     .header-content {
+        width: 90%;
         display: flex;
         margin-left: 5px;
+        position: relative;
         .header-option {
             display: flex;
+            position: absolute;
+            right: 0;
+            margin-right: 1rem;
         }
     }
     .header-btn {
-        position: relative;
+        right: 0;
         border: none;
         border-radius: 50%;
         width: 40px;

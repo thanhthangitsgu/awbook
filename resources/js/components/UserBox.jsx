@@ -1,12 +1,20 @@
 import { useState } from "react"
 import OutsideAlerter from "./OutsideAlerter";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import allAPI from "../store/api/allAPI";
 export default function UserBox({ handleShowAuForm }) {
+    const current = useSelector(state => state.user).current;
+    const [user, setuser] = useState("");
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(allAPI.userAPI.getProfile())
+    }, [])
+    useEffect(() => {
+        current.data && current.data.response && setuser(current.data.response);
+    }, [current])
     const [open, setOpen] = useState(false);
-    const user = useSelector(state => state.user);
-    const [current, setcurrent] = useState([]);
     const nav = useNavigate();
     const handleCloseBox = () => {
         setOpen(false);
@@ -17,13 +25,9 @@ export default function UserBox({ handleShowAuForm }) {
     const hanldeOnClick = () => {
         setOpen(!open);
     }
-    useEffect(() => {
-        setcurrent(user.current);
-    }, [user]);
 
     const logout = () => {
         localStorage.removeItem('token');
-        setcurrent([]);
         nav('/');
     }
 
@@ -42,7 +46,7 @@ export default function UserBox({ handleShowAuForm }) {
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
                 </button>
-                <div className="box-name-accout">{current[0] ? (current[0].response.surname + " " + current[0].response.name) : ""}</div>
+                <div className="box-name-accout">{user.surname + " " + user.name}</div>
             </div>
             <div className={open === true ? "box-body" : "box-body box-hiden"}>
                 <div className="box-content">
@@ -98,6 +102,6 @@ export default function UserBox({ handleShowAuForm }) {
         </div>
     )
     return (
-        current[0] ? OutsideAlerter(isLogged, handleCloseBox) : OutsideAlerter(notLogged, handleCloseBox)
+        user.name ? OutsideAlerter(isLogged, handleCloseBox) : OutsideAlerter(notLogged, handleCloseBox)
     )
 }

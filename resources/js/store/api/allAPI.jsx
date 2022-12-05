@@ -11,6 +11,7 @@ import permissionAPI from "./permissionAPI";
 import billAPI from "./billAPI";
 import importAPI from "./importAPI";
 import titleAPI from "./titleAPI";
+import methodAPI from "./methodAPI";
 const allAPI = {
     roleAPI,
     userAPI,
@@ -24,6 +25,7 @@ const allAPI = {
     permissionAPI,
     billAPI,
     importAPI,
-    titleAPI
+    titleAPI, 
+    methodAPI
 }
 export default allAPI;

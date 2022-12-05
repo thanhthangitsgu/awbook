@@ -50,11 +50,24 @@ const deleteBookTitle = (id) => async (dispatch) => {
 
 const getAll = () => async (dispatch) => {
     await axiosClient.get('api/book').then((response) => {
-        dispatch(bookActions.getAll(response));
+        let data = response;
+        const bookTitle = axiosClient.get('api/book-title/');
+        const promotion = axiosClient.get('api/promotion/');
+        axios.all([bookTitle, promotion]).then(axios.spread((resBookTitle, resPromotion) => {
+            let databookTitle = resBookTitle.data.status ? resBookTitle.data.data : undefined;
+            let datapromotion = resPromotion.data.status ? resPromotion.data.data : undefined;
+            data.data && data.data.data.map((element, index) => {
+                element.bookTitle = databookTitle.filter(item => item.id == element.title_id)[0];
+                element.promotion = datapromotion.filter(item => item.id == element.promotion_id)[0];
+                !(element.promotion_id) && (element.promotion = {discount: 0}); 
+            })
+            dispatch(bookActions.getAll(data));
+        })).catch({
+        })
     })
+
 }
 const addOne = (data) => async (dispatch) => {
-    console.log("data", data)
     await axiosClient.post('api/book', data).then((response) => {
         dispatch(bookActions.addOne(response));
         dispatch(getAll());
@@ -72,8 +85,11 @@ const deleteOne = (id) => async (dispatch) => {
         dispatch(getAll());
     })
 }
-
-
+const getOne = (id) => async (dispatch) => {
+    await axiosClient.get('api/book/' + id).then((response) => {
+        dispatch(bookActions.getOne(response));
+    })
+}
 export default {
     getListBookTitle,
     addBookTitle,

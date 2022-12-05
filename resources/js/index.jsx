@@ -4,6 +4,7 @@ import '../css/home.scss'
 import '../css/header.scss'
 import '../css/book.scss'
 import '../css/admin.scss'
+import '../css/cart.scss'
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
@@ -11,7 +12,7 @@ import store from './store/store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import BookPageCustomer from './pages/customer/book/index'
 import Home from './pages/customer/Home'
-import DetailBook from './pages/customer/DetailBook'
+import DetailBook from "./pages/customer/book/detail"
 import Customer from './main/Customer'
 import Admin from './main/Admin'
 import UserDetail from './pages/admin/user/detail'
@@ -35,6 +36,8 @@ import Bill from "./pages/admin/bill"
 import Import from './pages/admin/import'
 import BookAdmin from "./pages/admin/book/index";
 import User from "./pages/admin/user"
+import Cart from "./pages/customer/cart"
+import PayMent from "./pages/customer/payment"
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -43,9 +46,11 @@ if (document.getElementById('app')) {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Customer />}>
+              <Route index element={<Home></Home>}></Route>
               <Route path='book/*' element={<BookPageCustomer></BookPageCustomer>}></Route>
               <Route path='detail/:id' element={<DetailBook></DetailBook>}></Route>
-              <Route index element={<Home></Home>}></Route>
+              <Route path="cart/" element={<Cart></Cart>}></Route>
+              <Route path="payment/" element={<PayMent></PayMent>}></Route>
             </Route>
             <Route path='/admin/*' element={<Admin />}>
               <Route index element={<User></User>}></Route>

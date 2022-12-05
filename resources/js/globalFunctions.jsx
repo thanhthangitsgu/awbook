@@ -53,11 +53,26 @@ const formatLink = (str) => {
     str = arr.join("-")
     return str;
 }
+const formatCash = (str) => {
+    str += "";
+    let temp = str.split('').reverse().reduce((prev, next, index) => {
+        return ((index % 3) ? next : (next + '.')) + prev;
+    })
+    return temp + "₫"
+}
+
+const getPrice = (cost, discount) => {
+    if (discount == 0) return cost;
+    return (cost - cost * discount / 100);
+}
+
 export default {
     validEmail,
     validFullName,
     validPhone,
     validNotEmpty,
     getCurrentTime,
-    formatLink
+    formatLink,
+    formatCash,
+    getPrice
 }

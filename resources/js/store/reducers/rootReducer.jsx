@@ -15,6 +15,7 @@ import partnerReducer from "./partnerReducer";
 import permissionReducer from "./permissionReducer";
 import billReducer from "./billReducer";
 import importReducer from "./importReducer";
+import methodReducer from "./methodReducer"
 const rootReducer = combineReducers({
   category: categoryReducer,
   cart: cartReducer,
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   partner: partnerReducer,
   permission: permissionReducer,
   bill: billReducer,
-  import: importReducer
+  import: importReducer,
+  method: methodReducer
 
 })
 export default rootReducer;

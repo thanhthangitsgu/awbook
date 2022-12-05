@@ -22,6 +22,12 @@ const deleteOne = (res) =>{
         payload: {res: res}
     }
 }
+const getOne = (res) =>{
+    return{
+        type: 'author/getone',
+        payload: {res}
+    }   
+}
 export default {
-    getAll, updateOne, addOne, deleteOne
+    getAll, updateOne, addOne, deleteOne, getOne
 }

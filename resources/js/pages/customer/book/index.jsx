@@ -4,10 +4,14 @@ import ListPublisher from "../../../components/customer/book/ListPublisher";
 import ListPrice from "../../../components/customer/book/ListPrice";
 import { Route, Routes } from "react-router-dom";
 import ListBook from "../../../components/customer/book/ListBook";
+import { useState } from "react";
+import { useEffect } from "react";
 const BookPageCustomer = () => {
-
-    const handleChangeCategory = () => {
-
+    const [publisher, setpublisher] = useState([]);
+    const [price, setprice] = useState("");
+    const [sort, setsort] = useState("inc");
+    const handleChangeSort = (event) => {
+        setsort(event.target.value);
     }
     return (
         <>
@@ -15,9 +19,9 @@ const BookPageCustomer = () => {
                 <div className="page-book-directory">Home &gt; Book &gt; </div>
                 <div className="page-book-body">
                     <div className="page-book-option">
-                        <ListCategory handleChangeCategory={handleChangeCategory}></ListCategory>
-                        <ListPublisher></ListPublisher>
-                        <ListPrice></ListPrice>
+                        <ListCategory></ListCategory>
+                        <ListPublisher publisher={publisher} setpublisher={setpublisher}></ListPublisher>
+                        <ListPrice price={price} setprice={setprice}></ListPrice>
                     </div>
                     <div className="page-book-content">
                         <div className="page-book-header">
@@ -40,7 +44,6 @@ const BookPageCustomer = () => {
                                     <input type="radio" name="sort" value="des" onChange={() => handleChangeSort(event)} />
                                     <label htmlFor="des">Giá từ cao xuống thấp </label>
                                 </div>
-
                             </div>
                             <div className="page-book-cover">
                                 <div className="item-img">
@@ -58,8 +61,8 @@ const BookPageCustomer = () => {
                             </div>
                         </div>
                         <Routes>
-                            <Route path=":category" element={<ListBook action={"filter"}></ListBook>}></Route>
-                            <Route path="" element={<ListBook action={"none"}></ListBook>}></Route>
+                            <Route path=":category" element={<ListBook action={"filter"} price={price} publisher={publisher} sort={sort}></ListBook>}></Route>
+                            <Route path="" element={<ListBook action={"none"} price={price} publisher={publisher} sort={sort}></ListBook>}></Route>
                         </Routes>
                     </div>
                 </div>

@@ -1,9 +1,12 @@
 import React from "react";
-const ListPrice = () => {
+const ListPrice = ({ price, setprice }) => {
+    const handleChangePrice = (event) => {
+        setprice(event.target.value);
+    }
     return (
         <div className="option-box">
             <div className="option-box-title">Giá</div>
-            <div className="option-box-list" style={{height: "10rem"}}>
+            <div className="option-box-list" style={{ height: "10rem" }}>
                 <div className="option-item">
                     <div className="book-filter-item">
                         <input type="radio" name="price" id="price_0" value="0" defaultChecked onChange={() => handleChangePrice(event)} />

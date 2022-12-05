@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import globalFunctions from "../globalFunctions";
 const CartBox = () => {
     const [isOpen, setisOpen] = useState(false);
     const cart = useSelector(state => state.cart).list;
@@ -18,7 +20,7 @@ const CartBox = () => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         };
-    }, []);
+    }, [])
     return (
         <div className="popup-box" ref={wrapperRef}>
             <button className={isOpen === true ? "btn-click btn-popup" : "btn-popup"} onClick={() => showBox()}>
@@ -51,20 +53,20 @@ const CartBox = () => {
                         </button>
                     </div>
                     <div className="box-list-item">
-                        {cart.map((element, index) => {
+                        {cart.length > 0 && cart.map((element, index) => {
                             return (
 
                                 <div className="box-item" key={index}>
                                     <div className="box-icon">
-                                        <img src={element.img} alt="" />
+                                        <img src={"http://127.0.0.1:5173/public/" + element.image} alt="" />
                                     </div>
-                                    <div className="box-item-content">{element.name}</div>
-                                    <div className="box-item-content-2" style={{ fontSize: '0.8rem', fontStyle: 'italic', marginLeft: '', textAlign: 'right' }}>{element.price}</div>
+                                    <div className="box-item-content">{element.bookTitle.name}</div>
+                                    <div className="box-item-content-2" style={{ fontSize: '0.8rem', fontStyle: 'italic', marginLeft: '', textAlign: 'right' }}>{globalFunctions.formatCash(globalFunctions.getPrice(element.price, element.promotion.discount))}</div>
                                 </div>
                             )
                         })}
                     </div>
-                    <div className="box-footer">Xem tất cả</div>
+                    <Link to="/cart"><div className="box-footer" onClick={() => showBox()}>Xem tất cả</div></Link>
                 </div>
                 <div className="box-triangle"></div>
             </div>

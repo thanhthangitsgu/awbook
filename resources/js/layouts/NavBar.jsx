@@ -4,8 +4,8 @@ import avatar from "../../../public/images/icon/man-user-pngrepo-com.png"
 import allAPI from "../store/api/allAPI";
 import { useEffect } from "react";
 import { useState } from "react";
-import removeVietnameseTones from "../globalFunction";
 import { NavLink } from "react-router-dom";
+import globalFunctions from "../globalFunctions";
 const NavBar = () => {
     const role = useSelector(state => state.role);
     const [roleList, setroleList] = useState([]);
@@ -37,7 +37,7 @@ const NavBar = () => {
             <div className="nav-list">
                 {roleList && roleList.map((element, index) => {
                     return (
-                        <NavLink to={removeVietnameseTones(element.name.replace('Quản lý', ''))} className={({ isActive }) => isActive ? "nav-active" : undefined} key={index}>
+                        <NavLink to={globalFunctions.formatLink(element.name.replace('Quản lý', ''))} className={({ isActive }) => isActive ? "nav-active" : undefined} key={index}>
                             <div className="nav-item" key={index}>
                                 <div className="item-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-gear-wide" viewBox="0 0 16 16">
