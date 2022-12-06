@@ -22,7 +22,7 @@ const PaymentBill = ({ listBook, fee, func }) => {
     const handleOnPay = () => {
         func();
         setTimeout(() => {
-            navigate("/cart")
+            navigate("/")
         }, 500)
     }
     return (

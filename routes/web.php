@@ -28,7 +28,6 @@ Route::get('/admin/{id}', function(){
 Route::get('/admin/{obj}/{id}', function(){
     return view('index');
 });
-
 Route::get('/book/{id}', function(){
     return view('index');
 });
@@ -39,6 +38,21 @@ Route::get('/cart', function(){
     return view('index');
 });
 Route::get('/payment', function(){
+    return view('index');
+});
+Route::get('/bill', function(){
+    return view('index');
+});
+Route::get('/bill/{id}', function(){
+    return view('index');
+});
+Route::get('/customer', function(){
+    return view('index');
+});
+Route::get('/customer/{action}', function(){
+    return view('index');
+});
+Route::get('/customer/{action}/{id}', function(){
     return view('index');
 });
 

@@ -1,9 +1,20 @@
-const initState = {}
+const initState = {
+    login: [],
+    user: [],
+    register: [],
+    token: localStorage.getItem('token')
+        ? localStorage.getItem('token')
+        : [],
+}
 const authReducer = (state = initState, action) => {
+    let data = action.payload;
     switch (action.type) {
         case 'auth/handleLogin':
-            state = action.payload;
             return state;
+        case 'auth/login':
+            return {
+                ...state, login: data.data
+            }
         default:
             return state;
     }

@@ -64,5 +64,6 @@ Route::resource('category-book', CategoryBookController::class);
 Route::middleware('auth:api')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::get('profile', [AuthController::class, 'user']);
+
 });
+Route::get('profile', [AuthController::class, 'user']);

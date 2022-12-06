@@ -53,14 +53,14 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
+            margin-right: 1rem;
 
             .name {
-                width: 13rem;
+                width: 11rem;
                 font-weight: 600;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-
             }
 
             .author {
@@ -213,6 +213,7 @@
         font-weight: 500;
         transition: all ease 0.3s;
         background-color: #CCCC;
+
         &:enabled {
             background-color: #FD841F;
             color: white;
@@ -286,12 +287,14 @@ button {
     font-size: 1.5rem;
 
 }
-.method{
+
+.method {
     margin-bottom: 1rem;
     background-color: white;
     border-radius: 5px;
-    .input-list{
-        input{
+
+    .input-list {
+        input {
             margin-right: 1rem;
         }
     }

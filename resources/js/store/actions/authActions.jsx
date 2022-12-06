@@ -13,8 +13,14 @@ const handleLogin = (res) => {
         payload: res
     }
 }
-
+const login = (res) =>{
+    return{
+        type: 'auth/login',
+        payload: res
+    }
+}
 export default {
     handleLogin,
-    fetchAu
+    fetchAu, 
+    login
 }

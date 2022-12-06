@@ -22,6 +22,12 @@ const deleteOne = (res) => {
         payload: res
     }
 }
+const getDetail = (res) => {
+    return {
+        type: 'bill/getdetail',
+        payload: res
+    }
+}
 export default {
-    getAll, addOne, updateOne, deleteOne
+    getAll, addOne, updateOne, deleteOne, getDetail
 }

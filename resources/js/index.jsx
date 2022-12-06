@@ -4,6 +4,7 @@ import '../css/home.scss'
 import '../css/header.scss'
 import '../css/book.scss'
 import '../css/admin.scss'
+import '../css/user.scss'
 import '../css/cart.scss'
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -38,6 +39,11 @@ import BookAdmin from "./pages/admin/book/index";
 import User from "./pages/admin/user"
 import Cart from "./pages/customer/cart"
 import PayMent from "./pages/customer/payment"
+import BillCustomer from "./pages/customer/user/bill"
+import CustomerPage from "./pages/customer/user"
+import UserCustomerPage from "./pages/customer/user/user"
+import ChangePassWord from './pages/customer/user/pasword'
+import BillDetail from './pages/customer/user/billdetail'
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -51,6 +57,13 @@ if (document.getElementById('app')) {
               <Route path='detail/:id' element={<DetailBook></DetailBook>}></Route>
               <Route path="cart/" element={<Cart></Cart>}></Route>
               <Route path="payment/" element={<PayMent></PayMent>}></Route>
+              <Route path="customer/" element={<CustomerPage></CustomerPage>}>
+                <Route path="bill/" element={<BillCustomer></BillCustomer>}>
+                </Route>
+                <Route path="bill/:id" element={<BillDetail></BillDetail>}></Route>
+                <Route path="info" element={<UserCustomerPage></UserCustomerPage>}></Route>
+                <Route path="changepass" element={<ChangePassWord></ChangePassWord>}></Route>
+              </Route>
             </Route>
             <Route path='/admin/*' element={<Admin />}>
               <Route index element={<User></User>}></Route>
@@ -100,6 +113,6 @@ if (document.getElementById('app')) {
           </Routes>
         </BrowserRouter>
       </Provider>
-    </StrictMode>,
+    </StrictMode >,
   )
 }

@@ -10,11 +10,15 @@ import { Link } from "react-router-dom";
 import PaymentBill from "./bill"
 import AddressBill from './address'
 const CartPage = () => {
-    const cart = useSelector(state => state.cart).list;
+    const cartList = useSelector(state => state.cart).list;
     const dispatch = useDispatch();
     const [listBook, setlistBook] = useState(useSelector(state => state.cart).listPay);
     const [checkAll, setcheckAll] = useState(false);
-    const [numberList, setnumberList] = useState(0);
+    const [cart, setcart] = useState([]);
+    //Lấy giỏ hàng
+    useEffect(() => {
+        setcart(cartList);
+    }, [cartList])
     //Handle chọn danh sách
     useEffect(() => {
         (listBook.length == cart.length) && setcheckAll(true);

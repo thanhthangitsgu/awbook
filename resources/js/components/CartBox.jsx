@@ -70,7 +70,10 @@ const CartBox = () => {
                 </div>
                 <div className="box-triangle"></div>
             </div>
-            <div className="box-number">{cart.length}</div>
+            {cart.length > 0 && (
+                <div className="box-number">{cart.length < 9 ? cart.length : "9+"}</div>
+            )}
+
         </div>
     )
 }

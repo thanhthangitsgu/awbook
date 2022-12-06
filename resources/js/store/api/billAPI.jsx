@@ -47,6 +47,11 @@ const deleteOne = (id) => async (dispatch) => {
         dispatch(getAll());
     })
 }
+const getDetail = (id) => async (dispatch) => {
+    await axiosClient.get('api/bill-detail/' +id).then((response) => {
+        dispatch(billActions.getDetail(response));
+    })
+}
 export default {
-    getAll, addOne, updateOne, deleteOne
+    getAll, addOne, updateOne, deleteOne, getDetail
 }

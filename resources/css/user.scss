@@ -1,0 +1,164 @@
+.user-page {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+}
+
+.page-menu {
+    background-color: white;
+    width: 25%;
+    border-radius: 5px;
+    padding: 1rem;
+    min-height: 20.2rem;
+    .active {
+        color: black;
+
+        .user-item {
+            background-color: rgb(240, 240, 240) !important;
+
+            .item-content {
+                font-weight: 500
+            }
+
+            ;
+        }
+
+    }
+}
+
+.page-content {
+    background-color: white;
+    width: 75%;
+    margin-left: 0.5rem;
+    border-radius: 5px;
+    padding: 1rem;
+
+    .edit-select-form {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.user-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgb(240, 240, 240);
+    padding-bottom: 1rem;
+
+    .user-img {
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.5rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .user-name {
+        .name {
+            font: {
+                weight: 600;
+            }
+        }
+
+        .email {
+            opacity: 80%;
+
+            font: {
+                size: 0.9rem;
+            }
+        }
+    }
+}
+
+.user-item {
+    .item {
+        display: flex;
+        align-items: center;
+        height: 3rem;
+        gap: 0 1rem;
+
+        &-icon {
+            width: 2rem;
+            height: 2rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 400;
+        }
+    }
+
+    transition: all ease 0.1s;
+
+    &:hover {
+        background-color: rgb(240, 240, 240);
+        cursor: pointer;
+        color: black;
+    }
+}
+
+.page-bill-content {
+    .header {
+        color: #001253;
+        display: flex;
+        flex-direction: row;
+        height: 3rem;
+        align-items: center;
+        font: {
+            weight: 600;
+        }
+        div{
+            width: 20%;
+            text-align: center;
+        }
+        
+    }
+    .bill-list{
+        margin-top: 0.5rem;
+        .bill-item{
+            border-top:1px solid rgb(240, 240, 240) ;
+            display: flex;
+            flex-direction: row;
+            div{
+                width: 20%;
+                text-align: center;
+            }
+            padding: 1rem 0rem;
+        }
+    }
+}
+.card-info{
+    display: flex;
+    gap: 0 1rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgb(240, 240, 240) ;
+    padding-bottom: 1rem;
+    .card{
+        width: 33%;
+        height: 6rem;
+        padding: 1rem;
+        border: 1px solid rgb(240, 240, 240);
+        //box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;   
+        &-title{
+            font-weight: 500;
+        }
+        &-content{
+            text-align: center;
+            color: orange;
+            font-weight: 600;
+        }
+    }
+    
+}

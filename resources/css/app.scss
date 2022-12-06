@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Dancing+Script&family=Libre+Barcode+128+Text&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;1,200&family=Nunito:wght@200;300;400&family=Pacifico&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 @mixin center-element {
     display: flex;
     align-items: center;
@@ -6,7 +7,7 @@
 }
 
 @mixin setWH($w,
-$h) {
+    $h) {
     width: $w;
     height: $h;
 }
@@ -27,10 +28,12 @@ a {
 $headerH: 5rem;
 $navbarW: 18rem;
 $frameColor: #fd841f;
+
 .active-page:not(a .menu-item) {
     border-bottom: 2px inset $frameColor;
     color: #e14d2a;
     font-weight: bold;
+
     &:hover {
         color: #e14d2a;
     }
@@ -51,27 +54,50 @@ $frameColor: #fd841f;
     width: 100%;
 }
 
+.header-logo {
+    padding: 0 1rem;
+    width: 15rem;
+    font-size: 2.5rem;
+    font-family: serif;
+    text-align: center;
+    color: white;
+    border-right: 1px solid rgb(240, 240, 240);
+    display: flex;
+    justify-content: center;
+    gap: 0 0.2rem;
+
+    .logo-img {
+        width: 3rem;
+        height: 3rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .logo-name {
+        font-size: 2.7rem;
+        font-weight: bold;
+    }
+}
+
 .header-main {
     width: 100%;
     align-items: center;
     background-color: $frameColor;
+    height: 4rem;
     border-bottom: 1px solid rgb(240, 240, 240);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     display: flex;
     position: relative;
-    .header-logo {
-        width: 13rem;
-        font-size: 2.5rem;
-        font-family: serif;
-        text-align: center;
-        color: white;
-        border-right: 1px solid rgb(240, 240, 240);
-    }
+
     .header-content {
         width: 90%;
         display: flex;
         margin-left: 5px;
         position: relative;
+
         .header-option {
             display: flex;
             position: absolute;
@@ -79,6 +105,7 @@ $frameColor: #fd841f;
             margin-right: 1rem;
         }
     }
+
     .header-btn {
         right: 0;
         border: none;
@@ -92,22 +119,27 @@ $frameColor: #fd841f;
         align-items: center;
         transition: all 0.3s ease;
         background-color: white;
+
         &:hover {
             background-color: #b73e3e;
         }
+
         &:hover svg {
             color: white;
         }
     }
+
     .header-account {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 0 10px;
+
         span {
             color: white;
         }
     }
+
     .header-noti {
         position: absolute;
         background-color: #e14d2a;
@@ -133,20 +165,24 @@ $frameColor: #fd841f;
     background-color: white;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     position: relative;
+
     .menu-dropdown {
         margin-left: 30px;
         width: 100%;
         display: inline-block;
         position: relative;
+
         &:hover .menu-list {
             display: block;
         }
+
         &:not(.active-page):hover .menu-option {
             border-bottom: 2px inset $frameColor;
             color: #e14d2a;
             font-weight: bold;
         }
     }
+
     .menu-list {
         display: none;
         background: white;
@@ -155,6 +191,7 @@ $frameColor: #fd841f;
         transition: all 0.5s ease;
         position: absolute;
         z-index: 1;
+
         .menu-item {
             height: 2rem;
             line-height: 2rem;
@@ -162,12 +199,14 @@ $frameColor: #fd841f;
             font-weight: normal;
             text-align: center;
             border-bottom: 1px inset rgb(240, 240, 240);
+
             &:hover {
                 background-color: $frameColor;
                 color: white;
             }
         }
     }
+
     .menu-option {
         padding-top: 0.5em;
         padding-bottom: 0.5em;
@@ -190,13 +229,16 @@ $frameColor: #fd841f;
 
 .btn-click {
     background-color: #b73e3e !important;
+
     svg {
         color: white;
     }
 }
 
 .search-bar {
-    width: 600px;
+    margin-left: 5rem;
+    width: 800px;
+
     .search-form {
         position: relative;
         width: 60%;
@@ -205,10 +247,12 @@ $frameColor: #fd841f;
         background: white;
         transition: all 0.5s ease;
         @include center-element();
+
         &:focus-within {
             //background-color: #fffae7;
-            width: 80%;
+            width: 70%;
         }
+
         input {
             position: absolute;
             left: 38px;
@@ -219,6 +263,7 @@ $frameColor: #fd841f;
             outline: none;
             background: none;
         }
+
         .search-icon {
             position: absolute;
             top: 5px;
@@ -252,9 +297,11 @@ body {
 .slider {
     display: flex;
     gap: 0 5px;
+
     .slider-main {
         width: 70%;
         height: 250px;
+
         .slide-container {
             overflow: hidden;
             width: 100%;
@@ -262,20 +309,24 @@ body {
             border-radius: 5px;
             @include center-element();
             position: relative;
+
             .slide {
                 width: 100%;
                 position: absolute;
                 transition: opacity ease-in-out 0.4s;
                 opacity: 0;
+
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
                 }
             }
+
             .slide-active {
                 opacity: 1;
             }
+
             button {
                 position: absolute;
                 border: 1px solid rgba(34, 34, 34, 0.287);
@@ -289,27 +340,33 @@ body {
                 background: black;
                 opacity: 30%;
                 transition: opacity ease-in-out 0.3s;
+
                 svg {
                     color: white;
                 }
+
                 &:hover {
                     opacity: 50%;
                 }
             }
+
             .btn-right {
                 top: 45%;
                 right: 10px;
             }
+
             .btn-left {
                 top: 45%;
                 left: 10px;
             }
         }
+
         .slider-dot {
             display: flex;
             position: absolute;
             top: 90%;
             gap: 0 10px;
+
             .dot {
                 width: 10px;
                 height: 10px;
@@ -318,11 +375,13 @@ body {
                 opacity: 50%;
                 cursor: pointer;
             }
+
             .active {
                 opacity: 1;
             }
         }
     }
+
     .slider-book-random {
         cursor: pointer;
         position: relative;
@@ -331,11 +390,13 @@ body {
         height: 250px;
         border-radius: 5px;
         overflow: hidden;
+
         img {
             width: 100%;
             height: 100%;
             position: absolute;
         }
+
         &-background {
             background-color: black;
             opacity: 30%;
@@ -344,6 +405,7 @@ body {
             width: 100%;
             height: 100%;
         }
+
         &-title {
             position: absolute;
             z-index: 1;
@@ -351,6 +413,7 @@ body {
             @include center-element();
             width: 100%;
             height: 100%;
+
             font: {
                 size: 30px;
             }
@@ -383,26 +446,31 @@ body {
     top: -10;
     z-index: 0;
     border-radius: 5px;
+
     .noti-title {
         width: 100%;
         padding: 1rem;
         border-bottom: 1px solid rgb(240, 240, 240);
         display: flex;
         gap: 0 180px;
+
         font: {
             weight: bold;
         }
     }
+
     .noti-item {
         width: 100%;
         padding: 1rem;
         border-bottom: 1px solid rgb(240, 240, 240);
         cursor: pointer;
         transition: all ease-in-out 0.2s;
+
         &:hover {
             background-color: #ededed;
         }
     }
+
     .last-item {
         text-align: center;
         color: #5f9df7;
@@ -418,6 +486,7 @@ body {
     @include center-element();
     transition: all ease-in-out 0.3s;
     background-color: white;
+
     &:hover {
         background-color: #ededed;
     }
@@ -458,11 +527,13 @@ body {
     justify-content: center;
     flex-direction: column;
     color: white;
+
     p {
         font: {
             size: 3rem;
             family: 'serif';
         }
+
         margin-bottom: 0;
     }
 }
@@ -472,9 +543,11 @@ body {
     align-items: center;
     justify-items: center;
     gap: 0 10px;
+
     img {
         width: 30px;
         height: 30px;
+
         &:hover {
             cursor: pointer;
         }
@@ -493,6 +566,7 @@ body {
     margin-top: 10px;
     padding-left: 10px;
     text-align: justify;
+
     font: {
         size: 0.8rem;
     }
@@ -506,23 +580,29 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
     div {
         width: 35%;
         height: 150px;
         margin-top: 10px;
     }
+
     p {
         margin-top: 0px;
         margin-bottom: 5px;
     }
+
     p:not(.footer-option-title) {
-        font-style: italic;
+       // font-style: italic;
+       font-size: 0.9rem;
+       opacity: 80%;
     }
 }
 
 .footer-option-title {
     height: 20px;
     color: white;
+
     font: {
         weight: bold;
     }
@@ -534,16 +614,19 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0 1rem;
+
     div {
         width: 50%;
         display: inline-block;
         position: relative;
         color: black;
         text-align: center;
+
         &:hover {
             cursor: pointer;
             color: #b73e3e
         }
+
         &::after {
             content: '';
             position: absolute;
@@ -554,12 +637,15 @@ body {
             border: 1px double #b73e3e;
             transition: transform 0.3s ease-out;
         }
+
         &:hover::after {
             transform: scaleX(1);
         }
     }
+
     .modal-active {
         color: #b73e3e !important;
+
         &::after {
             content: '';
             position: absolute;
@@ -572,6 +658,7 @@ body {
             transition: transform 0.3s ease-out;
         }
     }
+
     font: {
         size: 1rem;
         weight: normal
@@ -595,15 +682,19 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
+
     form {
         display: flex;
         align-items: center;
         justify-content: center;
+
         font: {
             size: 1rem
         }
+
         flex-direction: column;
         width: 80%;
+
         input {
             width: 100%;
             height: 2.5rem;
@@ -612,10 +703,12 @@ body {
             border-radius: 5px;
             padding-left: 1rem;
             border: none;
+
             &:focus {
                 outline: none;
             }
         }
+
         button {
             width: 60%;
             border: none;
@@ -623,21 +716,25 @@ body {
             border-radius: 20px;
             color: white;
             background-color: #b73e3e;
+
             &:disabled {
                 background-color: #DDDDDD;
                 color: #666666;
             }
         }
     }
+
     .forgot-password {
         margin-top: 1rem;
         color: orange;
         text-align: right;
+
         &:hover {
             color: #b73e3e;
             cursor: pointer;
         }
     }
+
     .modal-content {
         transition: all ease-out 0.3s;
     }
@@ -648,15 +745,19 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
+
     form {
         display: flex;
         align-items: center;
         justify-content: center;
+
         font: {
             size: 1rem
         }
+
         flex-direction: column;
         width: 80%;
+
         input {
             width: 100%;
             height: 2.5rem;
@@ -665,10 +766,12 @@ body {
             border-radius: 5px;
             padding-left: 1rem;
             border: none;
+
             &:focus {
                 outline: none;
             }
         }
+
         button {
             width: 60%;
             border: none;
@@ -676,13 +779,27 @@ body {
             border-radius: 20px;
             color: white;
             background-color: #b73e3e;
+
             &:disabled {
                 background-color: #DDDDDD;
                 color: #666666;
             }
         }
     }
+
     .modal-content {
         transition: all ease-out 0.3s;
     }
+}
+.box-item{
+    &:hover{
+        cursor: pointer;
+    }
+}
+#auth-form{
+    .modal-header{
+        background-color: white;
+        display: block;
+    }
+    
 }

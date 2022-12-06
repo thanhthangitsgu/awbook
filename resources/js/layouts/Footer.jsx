@@ -1,10 +1,18 @@
 import React from 'react'
+import logo from '../../../public/images/logo/logo.png'
 class Footer extends React.Component {
   render() {
     return (
       <div className="footer">
         <div className="footer-title">
-          <p>AWBOOK</p>
+          <div className="header-logo">
+            <div className="logo-img">
+              <img src={logo} alt="" />
+            </div>
+            <div className="logo-name">
+              BOOK
+            </div>
+          </div>
           <div className="footer-icon">
             <img src="https://img.icons8.com/fluency/240/null/facebook-new.png" />
             <img src="https://img.icons8.com/3d-fluency/750/null/gmail.png" />

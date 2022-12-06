@@ -80,6 +80,7 @@ const UserForm = ({ id, action }) => {
     }, [user])
     //validate
     useEffect(() => {
+
         let data = {
             fullname: globalFunctions.validFullName(dataForm.fullname),
             gender: globalFunctions.validNotEmpty(dataForm.gender),
@@ -173,19 +174,24 @@ const UserForm = ({ id, action }) => {
                     </div>
                     {(edit || add) && (validData.gender ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
                 </div>
-                <div className="edit-row-item">
-                    <div className="edit-label-form">Vai trò: </div>
-                    <div className="edit-select-form" style={{ width: "24rem", marginLeft: "0" }}>
-                        <select name="position_id" id="" onChange={() => handleOnChangeForm(event)} disabled={!edit && !add}>
-                            {listPosotion && listPosotion.map((element, index) => {
-                                return (
-                                    <option value={element.id}>{element.name}</option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    {(edit || add) && (validData.position_id ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
-                </div>
+                {
+                    action != 'manage' && (
+                        <div className="edit-row-item">
+                            <div className="edit-label-form">Vai trò: </div>
+                            <div className="edit-select-form" style={{ width: "24rem", marginLeft: "0" }}>
+                                <select name="position_id" id="" onChange={() => handleOnChangeForm(event)} disabled={!edit && !add}>
+                                    {listPosotion && listPosotion.map((element, index) => {
+                                        return (
+                                            <option value={element.id}>{element.name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            {(edit || add) && (validData.position_id ? (<div className="edit-icon-valid">{svg.validIcon}</div>) : (<div className="edit-icon-notvalid">{svg.unValidIcon}</div>))}
+                        </div>
+                    )
+                }
+
                 <div className="edit-row-item">
                     <div className="edit-label-form">Địa chỉ: </div>
                     <div className="edit-input-form">
@@ -201,7 +207,7 @@ const UserForm = ({ id, action }) => {
             </form>
             <div className="footer-btn">
                 <div className="button-delete">
-                    {!add && (edit ? (<button onClick={() => handleChangeType()}> {svg.btnClose} Hủy </button>) : (<button> {svg.btnDelete} Xóa </button>))}
+                    {!add && (edit ? (<button onClick={() => handleChangeType()}> {svg.btnClose} Hủy </button>) : (action != 'manage' ? (<button> {svg.btnDelete} Xóa </button>) : (<div></div>)))}
                 </div>
                 <div className="button-done">
                     {add ? (<button onClick={() => handleAdd()} disabled={!validated}>{svg.btnDone} Xác nhận </button>) : edit ? (<button onClick={() => handleUpdate()} disabled={!validated}>{svg.btnDone} Xác nhận </button>) : (<button onClick={() => handleChangeType()}>{svg.btnEdit} Chỉnh sửa </button>)}

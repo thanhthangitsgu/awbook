@@ -28,6 +28,8 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
         validFullnameRe: false,
     }
 
+    
+
     const [stateLogin, setStateLogin] = useState(INITIAL_STATELOGIN);
     const [stateRegister, setStateRegister] = useState(INITIAL_STATEREGISTER);
 
@@ -46,7 +48,6 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
             let valid = val.length >= 8
             setStateLogin({ ...stateLogin, [name]: val, validPassword: valid });
         }
-
     }
     const handleOnChangeRegister = (event) => { }
     //     let name = event.target.name;
@@ -104,6 +105,7 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
         }
     }, [profile])
 
+    
     const logInForm = (
         <div className="login-form">
             <form action="">
@@ -126,7 +128,7 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
         </div>
     )
     return (
-        <Modal show={showAuForm && !isLogged} onHide={checkOutside} centered >
+        <Modal show={showAuForm && !isLogged} onHide={checkOutside} centered id="auth-form">
             <Modal.Header>
                 <Modal.Title>
                     <div className="modal-title-au">

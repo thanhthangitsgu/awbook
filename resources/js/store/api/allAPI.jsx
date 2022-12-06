@@ -12,6 +12,7 @@ import billAPI from "./billAPI";
 import importAPI from "./importAPI";
 import titleAPI from "./titleAPI";
 import methodAPI from "./methodAPI";
+import authAPI from "./authAPI";
 const allAPI = {
     roleAPI,
     userAPI,
@@ -26,6 +27,7 @@ const allAPI = {
     billAPI,
     importAPI,
     titleAPI, 
-    methodAPI
+    methodAPI, 
+    authAPI
 }
 export default allAPI;

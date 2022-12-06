@@ -132,6 +132,7 @@
 
 .popup-box {
     position: relative;
+  
 }
 
 .btn-popup {
@@ -161,6 +162,7 @@
     z-index: 1;
     overflow: hidden;
     border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
 }
 
 .box-triangle {

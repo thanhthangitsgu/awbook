@@ -3,6 +3,7 @@ const initState = {
     addOne: [],
     updateOne: [],
     deleteOne: [],
+    listDetail: [],
 }
 const billReducer = (state = initState, action) => {
     let data = action.payload;
@@ -22,6 +23,10 @@ const billReducer = (state = initState, action) => {
         case 'bill/deleteone':
             return {
                 ...state, deleteone: data
+            }
+        case 'bill/getdetail':
+            return {
+                ...state, listDetail: data
             }
         default: return state;
 

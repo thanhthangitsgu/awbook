@@ -16,6 +16,7 @@ import permissionReducer from "./permissionReducer";
 import billReducer from "./billReducer";
 import importReducer from "./importReducer";
 import methodReducer from "./methodReducer"
+import modalReducer from "./modalReducer";
 const rootReducer = combineReducers({
   category: categoryReducer,
   cart: cartReducer,
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
   permission: permissionReducer,
   bill: billReducer,
   import: importReducer,
-  method: methodReducer
+  method: methodReducer,
+  modal: modalReducer
 
 })
 export default rootReducer;

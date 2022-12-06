@@ -43,7 +43,7 @@ const cartReducer = (state = initState, action) => {
             book = book.book;
             product = pay.filter(item => item.id != book.id);
             localStorage.setItem('pay', JSON.stringify(product));
-            return { ...state, listPay: product }
+            return { ...state, listPay: product}
         default:
             return state;
     }
