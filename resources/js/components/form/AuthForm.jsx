@@ -8,7 +8,6 @@ const AuthForm = () => {
     const modalReducer = useSelector(state => state.modal);
     const [isShow, setisShow] = useState(false);
     const [formLogin, setformLogin] = useState(true);
-    const dispatch = useDispatch();
     const handleHidenBox = () => {
         setisShow(false)
     }

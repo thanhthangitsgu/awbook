@@ -29,20 +29,15 @@ const LoginForm = ({ handleHidenBox }) => {
     }
     useEffect(() => {
         if (authReducer.login.response == "success") {
-            alert("Đăng nhập thành công");
-            dispatch(allAPI.userAPI.getProfile());
             localStorage.setItem('token', authReducer.login.result.token);
             setTimeout(() => {
-                navigate('/');
                 handleHidenBox();
+                navigate('/');
             }, 300)
 
         }
     }, [authReducer])
     const userReducer = useSelector(state => state.user).current;
-    useEffect(()=>{
-        console.log("current", userReducer);
-      }, [userReducer])
 
     return (
         <div className="login-form">

@@ -6,13 +6,11 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import allAPI from "../store/api/allAPI";
 import modalActions from "../store/actions/modalActions";
 import svg from "./svg";
+import authorActions from "../store/actions/authorActions";
+import authActions from "../store/actions/authActions";
 export default function UserBox({ handleShowAuForm }) {
-    const current = useSelector(state => state.user).current;
-    const [user, setuser] = useState("");
+    const user = useSelector(state => state.auth).user;
     const dispatch = useDispatch();
-    useEffect(() => {
-        current.data && current.data.response && setuser(current.data.response);
-    }, [current])
     const [open, setOpen] = useState(false);
     const nav = useNavigate();
     const handleCloseBox = () => {
@@ -23,12 +21,11 @@ export default function UserBox({ handleShowAuForm }) {
     }
 
     const logout = () => {
-        localStorage.removeItem('token');
-        setuser([]);
+        dispatch(authActions.logout())
         setTimeout(() => {
             nav('/');
         }, 500);
-
+        setOpen(false);
     }
     const showAuForm = () => {
         dispatch(modalActions.login(true));
@@ -74,7 +71,7 @@ export default function UserBox({ handleShowAuForm }) {
                             <div className="box-item-content">Đổi mật khẩu</div>
                         </div>
                     </div>
-                    <div className="box-footer" onClick={logout}>Đăng xuất</div>
+                    <div className="box-footer" onClick={() => logout()}>Đăng xuất</div>
                 </div>
                 <div className="box-triangle"></div>
             </div>
@@ -84,7 +81,7 @@ export default function UserBox({ handleShowAuForm }) {
         user.name ? isLogged : (
             <div className="box-account" onClick={() => showAuForm()}>
                 <button className={open === true ? "btn-click btn-popup" : "btn-popup"} >
-                   {svg.btnLogout}
+                    {svg.btnLogout}
                 </button>
             </div>
         )

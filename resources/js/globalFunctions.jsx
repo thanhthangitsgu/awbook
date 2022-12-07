@@ -65,7 +65,6 @@ const getPrice = (cost, discount) => {
     if (discount == 0) return cost;
     return (cost - cost * discount / 100);
 }
-
 export default {
     validEmail,
     validFullName,

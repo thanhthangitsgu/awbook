@@ -44,6 +44,7 @@ import CustomerPage from "./pages/customer/user"
 import UserCustomerPage from "./pages/customer/user/user"
 import ChangePassWord from './pages/customer/user/pasword'
 import BillDetail from './pages/customer/user/billdetail'
+import Authentization from './Authentization'
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -55,7 +56,9 @@ if (document.getElementById('app')) {
               <Route index element={<Home></Home>}></Route>
               <Route path='book/*' element={<BookPageCustomer></BookPageCustomer>}></Route>
               <Route path='detail/:id' element={<DetailBook></DetailBook>}></Route>
-              <Route path="cart/" element={<Cart></Cart>}></Route>
+              <Route path="cart/" element={<Authentization></Authentization>}>
+                <Route path="" element={<Cart></Cart>}></Route>
+              </Route>
               <Route path="payment/" element={<PayMent></PayMent>}></Route>
               <Route path="customer/" element={<CustomerPage></CustomerPage>}>
                 <Route path="bill/" element={<BillCustomer></BillCustomer>}>

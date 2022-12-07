@@ -16,21 +16,15 @@ export default function Customer() {
   const [showAuForm, setshowAuForm] = useState(false);
   const navigate = useNavigate()
   const handleShowAuForm = () => {
-
     setshowAuForm(true);
   }
-  const authReducer = useSelector(state => state.auth).token;
-  const userReducer = useSelector(state => state.user).current;
-  useEffect(() => {
-    authReducer != [] && axiosClient.get('api/profile').then((res) => {
-      console.log(res);
-    })
-   
-  }, [authReducer])
 
-  useEffect(()=>{
-    console.log("current", userReducer);
-  }, [userReducer])
+
+  useEffect(() => {
+    dispatch(allAPI.authAPI.getProfile());
+  }, []);
+
+
   return (
     <>
       <AuthForm>  </AuthForm>
