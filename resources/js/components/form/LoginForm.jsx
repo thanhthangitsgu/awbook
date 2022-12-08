@@ -37,8 +37,6 @@ const LoginForm = ({ handleHidenBox }) => {
 
         }
     }, [authReducer])
-    const userReducer = useSelector(state => state.user).current;
-
     return (
         <div className="login-form">
             <form action="">

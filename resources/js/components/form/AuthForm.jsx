@@ -13,7 +13,7 @@ const AuthForm = () => {
     }
     const handleOnClickOpenForm = () => {
         setformLogin(!formLogin);
-    }
+    }   
     useEffect(() => {
         setisShow(modalReducer.modalLogin)
     }, [modalReducer])

@@ -6,6 +6,7 @@ import '../css/book.scss'
 import '../css/admin.scss'
 import '../css/user.scss'
 import '../css/cart.scss'
+import '../css/loginadmin.scss'
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
@@ -45,6 +46,7 @@ import UserCustomerPage from "./pages/customer/user/user"
 import ChangePassWord from './pages/customer/user/pasword'
 import BillDetail from './pages/customer/user/billdetail'
 import Authentization from './Authentization'
+import LoginAdmin from "./pages/admin/login"
 if (document.getElementById('app')) {
   const root = createRoot(document.getElementById('app'))
   root.render(
@@ -52,6 +54,7 @@ if (document.getElementById('app')) {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
+            <Route path='login' element={<LoginAdmin></LoginAdmin>}></Route>
             <Route path='/' element={<Customer />}>
               <Route index element={<Home></Home>}></Route>
               <Route path='book/*' element={<BookPageCustomer></BookPageCustomer>}></Route>

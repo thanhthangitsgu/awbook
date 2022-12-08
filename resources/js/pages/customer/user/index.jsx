@@ -2,7 +2,9 @@ import React from "react";
 import { Link, Outlet, Routes, NavLink } from "react-router-dom";
 import Bill from "./bill";
 import { Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 const UserCustomerPage = () => {
+    const user = useSelector(state => state.auth).user;
     return (
         <div className="user-page">
             <div className="page-menu">
@@ -11,8 +13,8 @@ const UserCustomerPage = () => {
                         <img src="http://127.0.0.1:5173/public/images/icon/man-user-pngrepo-com.png" alt="" />
                     </div>
                     <div className="user-name">
-                        <div className="name">Phan Thanh Thắng</div>
-                        <div className="email">thanhthang.itsgu@gmail.com</div>
+                        <div className="name">{user.surname + " " + user.name}</div>
+                        <div className="email">{user.email}</div>
                     </div>
                 </div>
                 <NavLink to="info" className={({ isActive }) => isActive ? "active" : undefined}>

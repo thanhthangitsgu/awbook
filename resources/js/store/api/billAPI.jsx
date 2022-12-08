@@ -48,7 +48,7 @@ const deleteOne = (id) => async (dispatch) => {
     })
 }
 const getDetail = (id) => async (dispatch) => {
-    await axiosClient.get('api/bill-detail/' +id).then((response) => {
+    await axiosClient.get('api/bill-detail/' + id).then((response) => {
         dispatch(billActions.getDetail(response));
     })
 }

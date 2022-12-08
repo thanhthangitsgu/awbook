@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import allAPI from "../../../store/api/allAPI";
+import globalFunctions from "../../../globalFunctions";
 const BookPage = () => {
     const [filter, setfilter] = useState("");
     const dispatch = useDispatch();
@@ -75,10 +76,10 @@ const BookPage = () => {
                                     <tr className={index % 2 ? "row-ood" : "row-even"} key={index}>
                                         <td className="col-first">{element.id}</td>
                                         <td><div className="td-img"><img src={'http://127.0.0.1:5173/public/' + element.image} alt="" /></div></td>
-                                        <td>{element.title_id}</td>
+                                        <td>{element.bookTitle.name}</td>
                                         <td>{element.pub_id}</td>
                                         <td>{element.year}</td>
-                                        <td>{element.price}</td>
+                                        <td>{globalFunctions.formatCash(element.price)}</td>
                                         <td className="col-last">
                                             <div className="action">
                                                 <Link to={'/admin/hoa-dpn/' + element.id}><button className="btn-detail" >

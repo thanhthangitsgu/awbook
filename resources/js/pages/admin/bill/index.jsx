@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import allAPI from "../../../store/api/allAPI";
+import globalFunctions from "../../../globalFunctions";
 const BillPage = () => {
     const [filter, setfilter] = useState("");
     const dispatch = useDispatch();
@@ -78,7 +79,7 @@ const BillPage = () => {
                                         <td>{element.payment_id}</td>
                                         <td>{element.partner_id}</td>
                                         <td>{element.ship_code}</td>
-                                        <td>{element.total_cost}</td>
+                                        <td>{globalFunctions.formatCash(element.total_cost)}</td>
                                         <td className="col-last">
                                             <div className="action">
                                                 <Link to={'/admin/hoa-dpn/' + element.id}><button className="btn-detail" >

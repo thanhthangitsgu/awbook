@@ -55,5 +55,8 @@ Route::get('/customer/{action}', function(){
 Route::get('/customer/{action}/{id}', function(){
     return view('index');
 });
+Route::get('/login', function(){
+    return view('index');
+});
 
 

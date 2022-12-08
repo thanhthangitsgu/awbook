@@ -18,13 +18,9 @@ export default function Customer() {
   const handleShowAuForm = () => {
     setshowAuForm(true);
   }
-
-
   useEffect(() => {
     dispatch(allAPI.authAPI.getProfile());
   }, []);
-
-
   return (
     <>
       <AuthForm>  </AuthForm>
