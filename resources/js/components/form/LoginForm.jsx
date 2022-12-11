@@ -32,7 +32,8 @@ const LoginForm = ({ handleHidenBox }) => {
             localStorage.setItem('token', authReducer.login.result.token);
             setTimeout(() => {
                 handleHidenBox();
-                navigate('/');
+                window.location.href = "/"
+               // navigate('/');
             }, 300)
 
         }

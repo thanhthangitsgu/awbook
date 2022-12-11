@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import globalFunctions from "../globalFunctions";
+import authActions from "../store/actions/authActions";
 const NavBar = () => {
     const role = useSelector(state => state.role);
     const [roleList, setroleList] = useState([]);
@@ -23,6 +24,12 @@ const NavBar = () => {
         })
         setroleList(list);
     }, [role])
+    const logout = () => {
+        dispatch(authActions.logout())
+        // setTimeout(() => {
+        //     window.location.href = "/login";
+        // }, 500);
+    }
     return (
         <div className="nav-bar">
             <div className="profile">
@@ -50,7 +57,7 @@ const NavBar = () => {
                     )
                 })}
             </div>
-            <div className="admin-logout">
+            <div className="admin-logout" onClick={() => logout()}>
                 <div className="logout-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />

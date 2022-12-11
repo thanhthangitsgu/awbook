@@ -95,7 +95,7 @@ export default function AuForm({ setshowAuForm, showAuForm, handleCloseAuForm })
             setIsLogged(true);
             localStorage.setItem('token', auth.result.token);
             dispatch(allAPI.userAPI.getProfile());
-            navigate("/");
+       
         }
     }, [auth]);
 

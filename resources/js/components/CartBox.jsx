@@ -60,8 +60,8 @@ const CartBox = () => {
                                     <div className="box-icon">
                                         <img src={"http://127.0.0.1:5173/public/" + element.image} alt="" />
                                     </div>
-                                    <div className="box-item-content">{element.bookTitle.name}</div>
-                                    <div className="box-item-content-2" style={{ fontSize: '0.8rem', fontStyle: 'italic', marginLeft: '', textAlign: 'right' }}>{globalFunctions.formatCash(globalFunctions.getPrice(element.price, element.promotion.discount))}</div>
+                                    <div className="box-item-content">{element.bookTitle && element.bookTitle.name}</div>
+                                    <div className="box-item-content-2" style={{ fontSize: '0.8rem', fontStyle: 'italic', marginLeft: '', textAlign: 'right' }}>{globalFunctions.formatCash(globalFunctions.getPrice(element.price, element.promotion && element.promotion.discount))}</div>
                                 </div>
                             )
                         })}

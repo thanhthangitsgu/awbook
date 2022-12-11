@@ -33,7 +33,7 @@ const LoginAdmin = () => {
             localStorage.setItem('token', auth.result.token);
             dispatch(allAPI.authAPI.getProfile())
             setTimeout(() => {
-                navi('/admin')
+                window.location.href = "/admin";
             }, 1000);
         }
     }, [auth])
