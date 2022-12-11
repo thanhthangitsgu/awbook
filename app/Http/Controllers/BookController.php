@@ -42,13 +42,13 @@ class BookController extends Controller
                 $book->price = $input['price'];
       
               if(isset($input['amount']))
-                $book->image = $input['amount'];
+                $book->amount = $input['amount'];
       
               if($request->has('image')){
                 $img = $request->file('image');
                 $filename=date('YmdHis'). '.'.$img->getClientOriginalExtension();
                 $img->move('images/books/', $filename);
-                $input['image']='images/books/'.$filename;
+                $book->image ='images/books/'.$filename;
               }
       
               if(isset($input['describe']))
