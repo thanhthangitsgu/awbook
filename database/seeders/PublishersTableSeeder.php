@@ -24,7 +24,7 @@ class PublishersTableSeeder extends Seeder
             [
                 'id_pub'=>'NXBCTQG',
                 'name'=>'Nhà Xuất Bản Chính Trị Quốc Gia',
-                'address'=>'',
+                'address'=>'123, Xã Đồng Trung, Huyện Thanh Thuỷ, Tỉnh Phú Thọ',
             ],
             [
                 'id_pub'=>'NXBLD',
@@ -39,7 +39,7 @@ class PublishersTableSeeder extends Seeder
             [
                 'id_pub'=>'NXBDT',
                 'name'=>'Nhà Xuất Bản Dân Trí',
-                'address'=>'',
+                'address'=>'73 An Cựu, Phường 01, Quận 11, Thành phố Hồ Chí Minh',
             ],
             [
                 'id_pub'=>'NXBVH',
@@ -64,7 +64,7 @@ class PublishersTableSeeder extends Seeder
             [
                 'id_pub'=>'NXBHD',
                 'name'=>'Nhà Xuất Bản Hồng Đức',
-                'address'=>'',
+                'address'=>'78, Xã Đông Thọ, Huyện Yên Phong, Tỉnh Bắc Ninh',
             ],  
             [
                 'id_pub'=>'NXBT',

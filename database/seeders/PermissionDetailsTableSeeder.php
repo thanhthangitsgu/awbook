@@ -25,10 +25,6 @@ class PermissionDetailsTableSeeder extends Seeder
                'position_id'=>'1',
             ],
             [
-               'permission_id'=>'6',
-               'position_id'=>'1',
-            ],
-            [
                'permission_id'=>'8',
                'position_id'=>'1',
             ],
